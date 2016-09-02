@@ -1,41 +1,103 @@
 \chapter{Theoretical Framework}
 \label{ch:teo}
 
-\begin{chapterquote}{Leslie Lamport}
-	Formal mathematics is nature's way of letting you know how sloppy
-your mathematics is.
+\begin{chapterquote}{Herbert Simon}
+Human beings, viewed as behaving systems, are quite simple.
+The apparent complexity of our behavior over time is largely a
+reflection of the complexity of the environment in which we find
+ourselves.
 \end{chapterquote}
-
-Este trabajo presenta una plantilla para las tesis y tesinas del Instituto Tecnológico Autónomo de México para los usuarios de \LaTeX \cite{lamport1994latex}. Nace de la necesidad de los matemáticos, actuarios e ingenieros (entre otras carreras) por utilizar un sistema de composición de textos adecuado para su trabajo de titulación. El objetivo es ayudar a la comunidad del ITAM a simplificar el proceso de escritura y edición de sus tesis, tesinas o casos. A continuación describimos a mayor detalle cada una de las partes de la plantilla.
 
 
 \section{Machine Learning}
-\subsection{Supervised Learning}
-\subsection{Unsupervised Learning}
+
+The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, physics etc. However, it has been difficult to agree upon a precise definition of the process mainly because it depends on the viewpoint. Since this work is motivated on the desire to make computers think and act like human beings, one alternative would be a brain simulation. Unfortunately, brain simulation faces two main obstacles[MLT]:
+\begin{enumerate}
+\item  The detailed structure of the brain is not known yet
+\item Even if we knew the detailed structure of the brain, it does not exist a fast enough computer to simulate it.
+\end{enumerate}
+
+Thus, the aim is to construct models that imitate a specific and limited behavior of humans. In this case, the behavior is the generation of a natural language such as English or Spanish. On the other hand, since what we have is data, the key concept to think is learning from data. Finally, if we put it on human behavioral terms the key concept is learning from experience[MLA]. 
+
+Therefore, machine Learning is about making computers modify or adapt their actions so that these actions get more accurate, where accuracy is measured by how well the chosen actions reflect the correct ones[MLA].As there are several ways to achieve this task there are different types of machine learning explained as follows [MLA]:
+
+\begin{itemize}
+\item \textbf{Supervised Learning} It is said that it is supervised learning when a training set of examples with the correct responses or targets are provided and, based on this training set, the algorithm generalises to respond correctly to all possible inputs.
+
+\item \textbf{Unsupervised Learning} The algorithm tries to identify similarities between the inputs so that the inputs that have something in common are categorised together. In this type of learning correct responses are not provided.
+
+\item \textbf{Reinforcement Learning} The algorithm gets told when the answer is wrong but does not get told how to correct it. Instead, it has to explore and try out different possibilities until it works out how to get the right answer. 
+
+\item \textbf{Evolutionary learning} In this type of learning, biological evolution is seen as a learning process where the organisms adapt to improve their survival rates and chance of having offspring in their environment. It uses an idea of fitness which corresponds to a score for how good the solution is. 
+\end{itemize}
+
 \subsection{Overfitting}
 \subsection{Underfitting}
 
+\section{McCulloch and Pitts Neurons}
+McCulloch and Pitts modeled a neuron as a mathematical model in order to extract only the essentials required to accurately represent the entity, removing all the obscured details. They took in account three basic elements: a set of weighted inputs ($w_i$), an adder that sums the input signals, and an activation function that decides if the neuron fires to the current inputs.
+\begin{figure}[h]
+\centering
+ 
+\includegraphics[width=10cm,height=5cm]{model_of_neuron.jpg}
+\caption{McCulloch and Pitt's Neuron Model}
+\label{fig:neuron}
+\end{figure}
+
+Hence, when all signals arrive into our neuron, they are added to determine if it should be activated, meaning if the sum is greater than the threshold $\theta$. The mathematical expression is as follows:\\
+\begin{equation} \label{eq:neuron}
+h=\sum_{i=1}^{m} w_i * x_i
+\end{equation}\ref{eq:neuron}
+
+Thus the output of the neuron is nothing more than the sum of the $m$ inputs ($x_i$) multiplied by the weights ($w_i$). Furthermore, units can be given biases by introducing an extra input to each unit which always have a value of 1. The weight on this extra input is called the bias and is equivalent to a threshold of the opposite sign \cite{polk2002cognitive}.
+
+
 \section{Neural Networks}
-A simple neural network is formed by input units at the bottom, any number of intermediate layers (called hidden layers formed by hidden units), and a layer of output units at the top. Connections within a layer from a higher to lower layers are forbidden. The states of the units in each layer are determined by applying equations (x)and (y) to the connections coming from lower layers. Actually, any input-output function which has a bounded derivative will do. However, the use of a linear function for combining the inputs to a unit before applying the nonlinearity simplifies the learning procedure\cite{polk2002cognitive}. 
 
-Thus, the total input ,xj, to unit j is a linear function of the outputs,yi, of the units that are connected to j and of the weights wji, on these connections. Furthermore, units can be given biases by introducing an extra input to each unit which always have a value of 1. The weight on this extra input is called the bias and is equivalent to a threshold of the opposite sign \cite{polk2002cognitive}.
+A simple neural network is shown in Figure \ref{fig:nn}. It is formed by input units at the bottom, any number of intermediate layers (called hidden layers), where each of the units are  defined as a McCulloch and Pitts neuron and a layer of output units at the top. Connections within a layer from a higher to lower layers are forbidden. 
 
-Learning or training refers to finding a set of weights that ensure that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector\cite{polk2002cognitive}. This means, we need to compare the actual and desired output vectors for every case. The total error in the performance of the network with a particular set of weights,E, is defined as:
-E=
+The point of a neural network is to discover the best weights for the weighted connections, since they are unknown. 
 
-c; index over input-output units
-j: index over output units
-y:actual state of an output unit
-d: desired sate of the output unit
+Learning or training refers to finding a set of weights that ensure that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector \cite{polk2002cognitive}. This means, we need to compare the error defined as the difference between the actual and desired output vectors for every case.
 
-The weight vector is formed by the internal adjustable parameters which are adjusted to minimize the error E using the gradient descent.Thus, it is necessary to compute the partial derivative of E with respect to each weight in the network. This indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount and the weight vector is then adjusted in the opposite direction to the gradient vector \cite{lecun2015deep}. 
+Then to adjust the weights the error E in equation \ref{eq:error} is multiplied by a parameter called the learning rate $\nu$ and by the input $x_i$. Then this value is added to the weight ($w_ij$) for each j neuron and input i.
+
+\begin{equation}
+\label{eq:error}
+E=(t_j - y_i)
+\end{equation}
+\begin{equation}
+\label{eq:weight}
+w_ij \leftarrow w_ij+\nu E * x_i
+\end{equation} where $0>=\nu<=1$ \\
+\ref{eq:weight}
+\begin{figure}
+\label{fig:nn}
+\center
+\includegraphics[width=10cm,height=5cm]{NN.jpg}
+\caption{Neural Network}
+\end{figure}
+\\
+Although the first time the network might get some answers correct and some wrong, the next time it is expected to improve until eventually its performance stop improving. How much the weights are changed is controlled by the learning rate $\nu$. If it is too big, the weights will change a lot  making the network unstable so that it never settles down. On the other hand, if $\nu$ is too short it will be stable and resistant to errors and inaccuracies in the data, but it will take too long to learn. Hence, the typical earning rate is between 0.1 and 0.4 [MLA].
+
+\subsection{Backpropagation}
+
+As explained before, the weight vector is formed by the internal adjustable parameters which are adjusted to minimize the error E showed in equation \ref{eq:error}	. To achieve this task the gradient descent is used. Therefore, it is necessary to compute the partial derivative of E with respect to each weight in the network (\ref{eq:der}). This indicates by what amount the error would increase or decrease if the weight were increased by a tiny amount. Then, the weight vector is adjusted in the opposite direction to the gradient vector \cite{lecun2015deep}. 
+
+\begin{equation}
+\label{eq:der}
+x=1
+\end{equation}
+
+The backpropagation procedure to compute the gradient of an objective function with respect to the weights of a multilayer stack of modules is nothing more than a practical application of the chain rule for derivatives. The key insight is that the derivative (or gradient)
+of the objective with respect to the input of a module can be computed by working backwards from the gradient with respect to the output of that module (or the input of the subsequent module). \cite{lecun2015deep}
+
+Falta poner las ecuaciones!!!!
+
+
 
 Using equation (z) we can compute dE/dy for any unit in the penultimate layer when given dE/dy for all units n the last layer \cite{polk2002cognitive}. Therefore,we can repeat this procedure to compute this term for successively earlier layers, computing dE/dw for the weights to go. 
 
-The backpropagation procedure to compute the gradient of an objective function with respect to the weights of a multilayer stack of modules is nothing more than a practical application of the chain rule for derivatives. The key insight is that the derivative (or gradient)
-of the objective with respect to the input of a module can be computed by working backwards from the gradient with respect to the output of that module (or the input of the subsequent module). The backpropagation equation can be applied repeatedly to propagate gradients through all modules, starting from the output at the top (where the network produces its prediction) all the way to the bottom (where the external input is fed). Once these gradients have been computed, it is straightforward to compute the gradients with respect to the weights of each module. To go from one layer to the next, a set of units compute a weighted sum of their inputs from the previous layer and pass the result through a non-linear function \cite{lecun2015deep}
-
-Falta poner las ecuaciones!!!!
 
 It was commonly thought that simple gradient descent would get trapped in poor local minima but in practice, poor local minima is rarely a problem with large networks.\cite{lecun2015deep}
 
@@ -43,8 +105,18 @@ It was commonly thought that simple gradient descent would get trapped in poor l
 After training, the performance of the system is measured on a different set of examples called a test set. This serves to test the generalization ability of the machine\cite{lecun2015deep}.
 
 \section{Deep Learning}
+
 Representation learning is a set of methods that allows a machine to be fed with raw data and to automatically discover the representations needed for detection or classification. Deep-learning methods are representation-learning methods with multiple levels of representation. With the composition of enough such transformations, very complex functions can be learned. For classification tasks, higher layers of representation amplify aspects of the input that are important for discrimination and suppress irrelevant variations\cite{lecun2015deep}.
 
+\section{Sequential Data}
+For sequential data, it is not allowed to make the assumption that data is independent and identically distributed (i.i.d.). Meaning, we are not allowed to express the likelihood function as the product over all data points of the probability distribution evaluated at each point.
+Sequential data often arise through measurement of time series, for example the rainfall measurements on successive days at a particular location., or the daily values of a currency exchange rate, or the acoustic features at a successive time frames used for speech recognition. 
+
+Sequential data can also arise in contexts other than time series such as the sequence of nucleotide base pairs along a strand of DNA or the sequence of characters in a an English sentence.
+
+For convenience, we shall sometimes refer to past and future events in a a sequence
+[PRML]
+-----------------------------------------
 
 \subsection{Recurrent Neural Networks}
 A recurrent neural network is a artificial neural network model.The difference of its structure is that connections among hidden units associated with a time delay are allowed, enabling the model to retain information about the past inputs. In this way, temporal correlations between events that are possibly far away from each other in the data can be discovered \cite{pascanu2013difficulty}. 
