@@ -15,5 +15,16 @@ This works is focused on the construction of a model that imitate a specific and
 ---------------------------------------------------------------
 
 
+\subsection{N-grams}
+The standard approach to statistical modelling of language was based on counting frequencies of occurrences of short symbol sequences of length up to N (called N-grams). The number of possible N-grams is on the order of VN, where V is the vocabulary size N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4).\cite{lecun2015deep}
+
+\subsection{Prediction by Partial Matching}
+The prediction by partial algorithms are compression algorithms where the prediction is determined by counting exact matches between the recent history and the training set \cite{graves2013generating}.
+    
+\subsection{Neural Language Models}
+Before the introduction of neural language model the standard approach to statistical modelling of language did not exploit distributed representations\cite{lecun2015deep}
+
+Recurrent Neural Networks are dynamic models that have been used to generate sequences in different domains such as music, text and motion capture data \cite{graves2013generating}.
+They also have been found to be very good at predicting the next character in the text or the next word in a sequence, since the hidden layers of a multilayer neural network learn to represent the network’s inputs in a way that makes it easy to predict the target outputs.\cite{lecun2015deep}
 
 \section{First Section}
