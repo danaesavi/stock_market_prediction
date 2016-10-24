@@ -259,12 +259,12 @@ There are three variants of the gradient descent: batch gradient descent, stocha
 The first variant computes the gradient of the cost function with respect to the parameters($\theta$) for the entire dataset as in \ref{eq:batchgd}.
 
 \begin{equation} \label{eq:batchgd}
-\theta=\theta+\eta * \Delta_\theta * J(\theta)
+\theta=\theta-\eta * \Delta_\theta * J(\theta)
 \end{equation}
 
 The second variant computes a parameter update for each training example $x_i$ and target $y_i$ \ref{eq:sgd}.
 \begin{equation} \label{eq:sgd}
-\theta=\theta+\eta * \Delta_\theta; * J(\theta;x_i;y_i)
+\theta=\theta-\eta * \Delta_\theta; * J(\theta;x_i;y_i)
 \end{equation}
 
 Were $\eta$ is the learning rate.
@@ -272,7 +272,7 @@ Were $\eta$ is the learning rate.
 The problem with the batch gradient descent is that it can be very slow and it does not allow to update the model with new examples on-the-fly. The stochastic gradient descent solves this problem and is faster than the batch gradient descent, but it performs updates with high variance causing the objective function to fluctuate heavily.  
 
 Finally, the mini-batch gradient descent performs an update for every mini-batch of $n$ training examples as in \ref{eq:mbgd} \begin{equation} \label{eq:mbgd}
-\theta=\theta+\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
+\theta=\theta-\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
 \end{equation}
 
 In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allow the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work\cite{ruder2016overview}. 
@@ -283,7 +283,7 @@ To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find t
 
 Choosing the proper learning rate $\eta$ is a difficult and important task as explained in the section "Neural Networks". There is a lot of research around this topic. In \cite{robbins1951stochastic} they try to adjust the learning rate by reducing the learning rate according to a pre-defined schedule or when the change in the objective between epochs falls below a threshold. Another issue is that the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. One last challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For this cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
 %fuente:http://sebastianruder.com/optimizing-gradient-descent/
-The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam.
+The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus speed up SGD. The last ones, adapt the updates to each individual parameter to perform larger updates for infrequent and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.
 
 Momentum \cite{qian1999momentum} is a method that helps accelerate gradient descent in the relevant direction and dampens oscillations by taking in account a fraction $\phi$ of the update vector of the past time step to the current update vector:
 
@@ -299,11 +299,34 @@ Nesterov accelerated gradient \cite{nesterov1983method} not only uses the moment
 \begin{equation}
 \theta=\theta-(\nu_t = \phi \nu_{t-1} + \eta \Delta_\theta J(\theta - \phi \nu_{t-1})
 \end{equation}
+ 
+ 
+The name Adam comes from adaptive moment estimation. It combines the advantages of AdaGrad and RMSProp \cite{kingma2014adam}. RMSprop, and ADAM  store an exponentially decaying average of past squared gradients $\nu_t$. In addition, Adam keeps an exponentially decaying average of past gradients $m_t$ similar to momentum:
+\begin{equation}
+m_t=\beta_1 m_{t-1} + (1-\beta_1)g_t
+\end{equation}
 
-\subsubsection{Adagrad}
-\subsubsection{RMSProp}
-\subsubsection{Adam}
-The name Adam comes from adaptive moment estimation. It combines the advantages of AdaGrad and RMSProp. 
+\begin{equation}
+\nu_t=\beta_2 \nu_{t-1} + (1-\beta_2)g^2_t
+\end{equation}
+
+ Where $m$ and $\nu$ are estimates of the first moement and the second moment of the gradients respectively, meaning the mean and the uncentered variance. Both are initialized as vectors of zeros and thus they are biased towards zero so they are corrected as follows:
+\begin{equation}
+\hat{m_t}=\frac{m_t}{1-\beta^t_1}
+\end{equation}
+
+\begin{equation}
+\hat{\nu_t}=\frac{\nu_t}{1-\beta^t_2}
+\end{equation}
+
+Finally, the next equation is computed to update the parameters:
+\begin{equation}
+\theta_{t+1}=\theta_t-\frac{\eta}{\sqrt[2]{\hat{\nu_t}} + \epsilon} \hat{m_t} 
+\end{equation}
+
+Where $\epsilon$ is a smoothing term to avoid the zero division. The default proposed values are $10^-8$ for $\epsilon$, 0.9 for $\beta_1$ and 0.999 for $\beta_2$.
+
+Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually become infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. It has beeb shown empirically that Adam works well in practice and better than othr adaptive-learning algorithms including the RMSProp and therefore it is the one chosen for this work.
 
 \section{Language Modelling}
 There are a lot of technology applications for language modelling. For example, speech recognition, machine translation, document classification and routing, optical character recognition, information retrieval, handwriting recognition, spelling correction, and many more.
@@ -350,7 +373,7 @@ Word-level language modelling has several limitations. Having so many classes de
 \subsubsection{Character-level language modelling}
 
 
-Character-level language modelling has been found to give slightly worse performance than equivalent word-level models. Nonetheless, predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings \cite{graves2013generating}. 
+Character-level language modelling has been found to give slightly worse performance than equivalent word-level models. Nevertheless, predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings \cite{graves2013generating}. 
 
 This language modelling option overcomes the great class number limitations of word-level language modelling. In this case, the predictions are not limited to the vocabulary words and it is applicable to text data containing non-word strings. Here, the number of text classes $K$ is defined by the number of different characters in the training data. It also overcomes the language limitation, meaning that the input data can be indifferently in Spanish, English, Chinese, etc.. 
 

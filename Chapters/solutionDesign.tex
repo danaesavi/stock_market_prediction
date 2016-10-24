@@ -1,0 +1,42 @@
+\chapter{Solution Design}
+\label{ch:design}
+
+\begin{chapterquote}{Ludwig Wittgenstein}
+	The limits of my language mean the limits of my world.
+\end{chapterquote}
+
+\section{Problem Description}
+
+Twitter is a microblog service where users write state messages called \textbf{tweets}. The length of these messages are lower or equal to 145 characters and they use to express people's opnions about several topics. The set of all these tweets generates a great amount of information that can be used by diffent kinds of users such as analysts, consultors, community managers, market researchers, etc..
+
+The model was implemented in Keras, a high-level neural networks library written in Python. It can run on top of either TensorFlow or Theano. It can work with the CPU or with the GPU, supports recurrent networks, and arbitrary connectivity schemes including multi-input and multi-output training. 
+\section{Text representation}
+
+The first step is to decide the information representation. As explained before predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings. Therefore, the model will be character-level. To represent the text of M different characters and length N, we focuse on specific text windows of length F that we check every step size S. For example, if we have the phrase "The limits of my language are the limits of my world" we have a text of length $N=52$ and $M=19$ different characters. Then if we set $F=4$ and $S=2$ we have 24 sequences whose target is its next character as showed in table \ref{tab:seqch}.
+
+\begin{table}{}
+
+\begin{tabular}{c c}
+\textbf{Phrase: }&The limits of my language are the limits of my world \\
+\end{tabular}
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c c c}
+\textbf{No.}&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18\\
+\textbf{Characters:}& " "& T& a& d& e& f& g& h& i& l& m& n& o& r& s& t& u& w& y\\
+\end{tabular}
+
+\begin{tabular}{c c c c c c c c c c c c c c}
+\textbf{Sequence:} &0&1&2 & 3 &4&5&6&7&8&9&10&11\\
+\textbf{Chars:} &The &e li&limi&mits&ts o& of &f my&my l& lan&angu&guag&age\\ 
+\textbf{Next character: }&l&m&t&" "&f&m&" "&a&g&a&e&a\\
+\textbf{Sequence:} &12&13&14&15&16&17&18&19&20&21&22&23\\
+\textbf{Chars:} &e ar&are &e th&the &e li&limi&mits&ts o& of &f my&my w& wor\\
+\textbf{Next character: }&e&t&e&l&m&t&" "&f&m&" "&o&l\\
+\end{tabular}
+
+\caption{Sequences of Characters}
+\label{tab:seqch}
+
+\end{table}
+
+Next we have to use the one-of-K representation for each character in each sequence. Since the number of text classes is the number of different characters for each sequence $(s,f);  s \in S; f \in F $, we need a vector of size $M$ where every element is a zero except for the number of element that corresponds to the character. For example, if $s=13$ and $f=1$ the character is 'a' and therefore its one-of-K representation is: $[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]$ .
+Now we have a matrix of dimensions: $SxFxM$.
