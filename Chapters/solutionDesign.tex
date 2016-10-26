@@ -10,9 +10,10 @@
 Twitter is a microblog service where users write state messages called \textbf{tweets}. The length of these messages are lower or equal to 145 characters and they use to express people's opnions about several topics. The set of all these tweets generates a great amount of information that can be used by diffent kinds of users such as analysts, consultors, community managers, market researchers, etc..
 
 The model was implemented in Keras, a high-level neural networks library written in Python. It can run on top of either TensorFlow or Theano. It can work with the CPU or with the GPU, supports recurrent networks, and arbitrary connectivity schemes including multi-input and multi-output training. 
+
 \section{Text representation}
 
-The first step is to decide the information representation. As explained before predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings. Therefore, the model will be character-level. To represent the text of M different characters and length N, we focuse on specific text windows of length F that we check every step size S. For example, if we have the phrase "The limits of my language are the limits of my world" we have a text of length $N=52$ and $M=19$ different characters. Then if we set $F=4$ and $S=2$ we have 24 sequences whose target is its next character as showed in table \ref{tab:seqch}.
+The first step is to decide the information representation. As explained before predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings. Therefore, the model will be character-level. To represent the text of M different characters and length N, we focus on specific text windows of length F that we check every step size S. Then, the number of sequences is given by the integer division: $NbSq=(N-F)/S$. For example, if we have the phrase "The limits of my language are the limits of my world" we have a text of length $N=52$ and $M=19$ different characters. Then if we set $F=4$ and $S=2$ we have 24 sequences whose target is its next character as showed in table \ref{tab:seqch}.Training the RNN on many shorter sequences is just as effective than training the whole string at once, provided they are several hundred characters or more long. This is a better choice since as explained before, to compute the exact gradient of the log probability of the training set, the RNN needs to process the entire training set sequentially and store the hidden state sequence in order to apply BTT. This task is infeasible due to the size of the training sets as well as unnecessary\cite{sutskever2011generating}.
 
 \begin{table}{}
 
@@ -38,5 +39,40 @@ The first step is to decide the information representation. As explained before 
 
 \end{table}
 
-Next we have to use the one-of-K representation for each character in each sequence. Since the number of text classes is the number of different characters for each sequence $(s,f);  s \in S; f \in F $, we need a vector of size $M$ where every element is a zero except for the number of element that corresponds to the character. For example, if $s=13$ and $f=1$ the character is 'a' and therefore its one-of-K representation is: $[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]$ .
-Now we have a matrix of dimensions: $SxFxM$.
+
+Next we have to use the one-of-K representation for each character in each sequence. Since the number of text classes is the number of different characters for each sequence $(ns,f);  ns \in NbSq; f \in F $, we need a vector of size $M$ where every element is a zero except for the number of element that corresponds to the character. For example, if $ns=13$ and $f=1$ the character is 'a' and therefore its one-of-K representation is: $[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]$. 
+Now we have a matrix of dimensions: $SxFxM$ that represents the text of length N and that will be the input of the network. Conversely, the target next characters are mapped to a the one-of-K representation. This will model a $NbSq x M$ matrix. As in \cite{sutskever2011generating}, we used sequences of length $F=250$. 
+
+\section{Network Architecture}
+
+The model has an input, a hidden and an output layer. The input layer has the same number as the total of sequences $(NbSq)$, each of dimensions $FxM$. The network has one single hidden layer with 1000 LSTM units as suggested in \cite{graves2013generating}.The LSTM has a drop out of 0.5 implemented as suggested in \cite{gal2015theoretically} in both, recurrent and non-recurrent connections. Finally, because this is a classification problem we use a fully connected output layer with the same number of neurons as unique characters ($M$). It uses the softmax function as activation function to make predictions for each of the classes and the cross-entropy function as loss function. The ADAM SGD optimizer in order to adapt the learning rate dynamically as the data is sparse. The next character is then the one with the greatest probability that is computed at the last step. Figure \ref{fig:netarch}  Where $x_{i}$'s are the $M$ input sequences and $x_o$ is the predicted next character. Of course, it is needed to translate the prediction from one-of-K representation to character representation at the end of the process
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6cm,height=6cm]{Modelo1.PNG}
+\caption{Network Architecture}
+\label{fig:netarch}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
