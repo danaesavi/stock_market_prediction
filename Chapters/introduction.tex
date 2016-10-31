@@ -4,7 +4,28 @@
 \begin{chapterquote}{Oscar Wilde}
 	Where there is no love, there is no understanding.
 \end{chapterquote}
-Around the world, computers capture and store terabytes of data everyday. for example, banks are building up pictures of how people spend their money, hospitals are recording, what treatments patients are on for which aliments, and engine monitoring systems in care record information about the engine in order to detect when it might fail. The real challenge is to do something useful with this data. 
+Around the world, computers capture and store terabytes of data everyday. for example, banks are building up pictures of how people spend their money, hospitals are recording, what treatments patients are on for which aliments, and engine monitoring systems in care record information about the engine in order to detect when it might fail. The real challenge is to do something useful with this unstructured data [MLA].  Natural language processing is a sub discipline of artificial intelligence that explores the use of computers to manipulate the written or spoken language and execute useful tasks. NLP is based on different disciplines such as computer science, mathematics, linguistics artificial science and psychology \cite{chowdhury2003natural}.  Between the main fields of study of NLP are the automatic translation, the text NLP, user interfaces, voice recognition, sentiment analysis, artificial intelligence, language modelling and robotics. This work is interested in  language modelling since it is an interesting and useful task. By generating natural language, music, code, poems and reviews could be automatically made. Other fascinating applications are compression and even personalized bot conversations. 
+ Despite the fact that all the different languages follow some basic syntax rules, the truth is that there is a lot of space for ambiguity difficult for a computer to detect and to generate.  For these reason language modellling techniques do not learn by hard the syntax rules and better learn them little by little just as most of human beings. One NLP technique for language modelling is the use of n-grams, the standard approach to statistical modelling of language based on counting frequencies of occurrences of short symbol sequences of length up to N. Another technique is the neural language modellng that unlike the statistical modelling, it exploits the  distributed representations. N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space  \cite{lecun2015deep} .This work focuses on recurrent neural networks, a neural laguage modelling that has been found to be very good at predicting the next character in the text or the next word in a sequence.
+Language modelling requires a lot of computational power as well as a lot of data to achieve good results. Fortunately, nowadays there is a lot of available information on the internet like online books , product reviews, news, blogs and social networks. One example of the use of NLP in social networks can be found in   \cite{agichtein2008finding}.  Agichtein et al. used Yahoo! Answers, one of the most popular websites where the users can ask any question that other users answer, to show that it is possible to separate high quality answers from the rest with almost the same precision as a human being .   Another interesting source is Twitter, a popular microblog service where users  generate state messages called \textit{tweets} that can be at most of 140 characters. These messages generally express opinions about different topics. 
+
+---------------------------------------------------------------------------------------------------------
+Mucha información no estructurada
+Nos gustaría poder sacarle provecho
+Lenguaje natural: nlp y sus campos de estudio, nos interesa generación de éste
+Reglas
+difícil para las compus fácil para los humanos
+una forma agregar las reglas pero muy difícil y limitado a un idioma en un  contexto 
+Aprender con información por experiencia
+Mucho procesamiento actualmente es posible o al menos más posible que antes
+	Mucha información available
+Libros, redes sociales  twitter (explicación)
+Propuestas: en este trabajo (redes neuronales recurrentes)
+Ventajas
+Desventajas
+Objetivo
+Lo que sigue está organizado de la siguiente manera
+
+--------------------------------------------------------------------------------------------------
 The size and complexity of these datasets means that humans are unable to extract useful information from them. Even the way the data is stored works against us. We would need to reduce the number of dimensions until our rain can deal with the problem. 
 This is one reason why machine learning is becoming so popular.
 [MLA]\\
