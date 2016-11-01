@@ -4,48 +4,31 @@
 \begin{chapterquote}{Oscar Wilde}
 	Where there is no love, there is no understanding.
 \end{chapterquote}
-Around the world, computers capture and store terabytes of data everyday. for example, banks are building up pictures of how people spend their money, hospitals are recording, what treatments patients are on for which aliments, and engine monitoring systems in care record information about the engine in order to detect when it might fail. The real challenge is to do something useful with this unstructured data [MLA].  Natural language processing is a sub discipline of artificial intelligence that explores the use of computers to manipulate the written or spoken language and execute useful tasks. NLP is based on different disciplines such as computer science, mathematics, linguistics artificial science and psychology \cite{chowdhury2003natural}.  Between the main fields of study of NLP are the automatic translation, the text NLP, user interfaces, voice recognition, sentiment analysis, artificial intelligence, language modelling and robotics. This work is interested in  language modelling since it is an interesting and useful task. By generating natural language, music, code, poems and reviews could be automatically made. Other fascinating applications are compression and even personalized bot conversations. 
- Despite the fact that all the different languages follow some basic syntax rules, the truth is that there is a lot of space for ambiguity difficult for a computer to detect and to generate.  For these reason language modellling techniques do not learn by hard the syntax rules and better learn them little by little just as most of human beings. One NLP technique for language modelling is the use of n-grams, the standard approach to statistical modelling of language based on counting frequencies of occurrences of short symbol sequences of length up to N. Another technique is the neural language modellng that unlike the statistical modelling, it exploits the  distributed representations. N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space  \cite{lecun2015deep} .This work focuses on recurrent neural networks, a neural laguage modelling that has been found to be very good at predicting the next character in the text or the next word in a sequence.
-Language modelling requires a lot of computational power as well as a lot of data to achieve good results. Fortunately, nowadays there is a lot of available information on the internet like online books , product reviews, news, blogs and social networks. One example of the use of NLP in social networks can be found in   \cite{agichtein2008finding}.  Agichtein et al. used Yahoo! Answers, one of the most popular websites where the users can ask any question that other users answer, to show that it is possible to separate high quality answers from the rest with almost the same precision as a human being .   Another interesting source is Twitter, a popular microblog service where users  generate state messages called \textit{tweets} that can be at most of 140 characters. These messages generally express opinions about different topics. 
+Around the world, computers capture and store terabytes of data everyday. for example, banks are building up pictures of how people spend their money, hospitals are recording, what treatments patients are on for which aliments, and engine monitoring systems in care record information about the engine in order to detect when it might fail. The real challenge is to do something useful with this unstructured data [MLA].  Natural language processing is a sub discipline of artificial intelligence that explores the use of computers to manipulate the written or spoken language and execute useful tasks. NLP is based on different disciplines such as computer science, mathematics, linguistics artificial science and psychology \cite{chowdhury2003natural}.  Between the main fields of study of NLP are the automatic translation, the text NLP, user interfaces, voice recognition, sentiment analysis, artificial intelligence, language modeling and robotics. This work is interested in  language modeling, , meaning, the generation of a natural language such as English or Spanish since it is an interesting and useful task. By generating natural language, music, code, poems and reviews could be automatically made. Other fascinating applications are compression and even personalized bot conversations. 
 
+We would like a program able to follow input sentences just like an average human being would. One way to achieve this task is to program all the syntactic and semantic rules of the language into one very large program. Another way is to construct a skeletal program that starts with a limited ability to understand the language and then understands the rules of it from experience just as humans use to do[MLT].  Despite the fact that all the different languages follow some basic syntax rules, the truth is that there is a lot of space for ambiguity difficult for a computer to detect and to generate.  Therefore, this work is interested in the second alternative. We do not want a program that learns by hard the syntax rules and better learn them little by little just as most of human beings. 
+
+One NLP technique for language modeling is the use of n-grams, the standard approach to statistical modeling of language based on counting frequencies of occurrences of short symbol sequences of length up to N. Another technique is the neural language modeling that unlike the statistical modeling, it exploits the  distributed representations. N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space  \cite{lecun2015deep} .This work focuses on recurrent neural networks, a neural language modeling that has been found to be very good at predicting the next character in the text or the next word in a sequence.
+
+Language modeling requires a lot of computational power as well as a lot of data to achieve good results. Fortunately, nowadays there is a lot of available information on the internet like online books , product reviews, news, blogs and social networks. One example of the use of NLP in social networks can be found in   \cite{agichtein2008finding}.  Agichtein et al. used Yahoo! Answers, one of the most popular websites where the users can ask any question that other users answer, to show that it is possible to separate high quality answers from the rest with almost the same precision as a human being .   Another interesting source is Twitter, a popular microblog service where users  generate state messages called \textit{tweets} that can be at most of 140 characters \cite{go2009twitter}. These messages generally express opinions about different topics and create a huge dataset that can be  exploited by different users like analysts, community managers, market researchers, etc.. This is why this work uses Twitter as source of information. 
+
+
+\section{Objective}
+The objective of this work is to study the recurrent neural networks to propose a framework that allows the language modeling  of phrases that can be used as tweets. 
+
+\section{Scope}
+The fact that the data is unstructured makes an easy human task  very difficult for a computer to process. In this work we generate natural language from a given phrase, although it does not generate phrases about a specific topic and it does not completely follow the syntax rules. The kind of syntax as well as the words it imitates are similar to the syntax and words of the given dataset. 
+
+This can also be seen as an advantage since  we could imitate the writing style of an specific author, population target, Twitter account, etc.. It can also allows to overcome the limitation that many NLP models have of language, meaning, the dataset can contain text written in different languages such as English, Spanish, German, etc.. On the other hand, a great amount of data is required to get good results as well as time and processing power. 
+%chance y aquí poner lo de GPU
+
+\section{Justification}
+
+Users of  social networks generate great amounts of information every minute of everyday. The interaction in these social networks is by text. Therefore, the use of NLP has a lot of sense and although it is a complex task, it is also a very important one.
+Twitter is one of the most used social networks with x number of users around the world.  There are several kinds of users. Besides the ordinary users like people in general, famous people also have a Twitter account such as writers, singers, actors, music bands, etc.. They use Twitter to easily interact with their fans.  Many brands also have  a Twitter account. They use it to engage with their customers as well as to gain new ones. Twitter allows users to learn about products, seek customer support and provide opinions about products and services. Community managers are responsible of these interactions. They build and manage the brand's online community, in this case, the Twitter brand's community. To achieve this task they write tweets about several topics that are directed to a certain target population. This work provides a tool that can be exploited by Twitter users  to 
+%busar estadísticas chidas
 ---------------------------------------------------------------------------------------------------------
-Mucha información no estructurada
-Nos gustaría poder sacarle provecho
-Lenguaje natural: nlp y sus campos de estudio, nos interesa generación de éste
-Reglas
-difícil para las compus fácil para los humanos
-una forma agregar las reglas pero muy difícil y limitado a un idioma en un  contexto 
-Aprender con información por experiencia
-Mucho procesamiento actualmente es posible o al menos más posible que antes
-	Mucha información available
-Libros, redes sociales  twitter (explicación)
-Propuestas: en este trabajo (redes neuronales recurrentes)
-Ventajas
-Desventajas
-Objetivo
 Lo que sigue está organizado de la siguiente manera
 
 --------------------------------------------------------------------------------------------------
-The size and complexity of these datasets means that humans are unable to extract useful information from them. Even the way the data is stored works against us. We would need to reduce the number of dimensions until our rain can deal with the problem. 
-This is one reason why machine learning is becoming so popular.
-[MLA]\\
----------------------------------------------------------------
 
-
-This works is focused on the construction of a model that imitate a specific and limited behavior of humans: generation of a natural language such as English or Spanish. We would like a program able to follow input sentences just like an average human being would. One way to achieve this task is to program all the syntactic and semantic rules of the language into one very large program. Another way is to construct a skeletal program that starts with a limited ability to understand the language and then understands the rules of it from experience just as humans use to do[MLT]. This work is interested in the second alternative[MLT].\\
----------------------------------------------------------------
-
-
-\subsection{N-grams}
-The standard approach to statistical modelling of language was based on counting frequencies of occurrences of short symbol sequences of length up to N (called N-grams). The number of possible N-grams is on the order of VN, where V is the vocabulary size N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4).\cite{lecun2015deep}
-
-\subsection{Prediction by Partial Matching}
-The prediction by partial algorithms are compression algorithms where the prediction is determined by counting exact matches between the recent history and the training set \cite{graves2013generating}.
-    
-\subsection{Neural Language Models}
-Before the introduction of neural language model the standard approach to statistical modelling of language did not exploit distributed representations\cite{lecun2015deep}
-
-Recurrent Neural Networks are dynamic models that have been used to generate sequences in different domains such as music, text and motion capture data \cite{graves2013generating}.
-They also have been found to be very good at predicting the next character in the text or the next word in a sequence, since the hidden layers of a multilayer neural network learn to represent the network’s inputs in a way that makes it easy to predict the target outputs.\cite{lecun2015deep}
-
-\section{First Section}
