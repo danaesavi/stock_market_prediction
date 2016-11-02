@@ -1,31 +1,32 @@
 \chapter{Theoretical Framework}
 \label{ch:teo}
 
-\begin{chapterquote}{Herbert Simon}
-Human beings, viewed as behaving systems, are quite simple.
-The apparent complexity of our behavior over time is largely a
-reflection of the complexity of the environment in which we find
-ourselves.
-\end{chapterquote}
+% \begin{chapterquote}{Herbert Simon}
+% Human beings, viewed as behaving systems, are quite simple.
+% The apparent complexity of our behavior over time is largely a
+% reflection of the complexity of the environment in which we find
+% ourselves.
+% \end{chapterquote}
 
 
 \section{Machine Learning}
 
-The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, physics, etc. However, it has been difficult to agree upon a precise definition of the process mainly because it depends on the viewpoint. When looking for the meaning of learning in the dictionary we can find: "acquire knowledge of something through study or experience", "conceiving something for mere appearances, or with little foundation", and "to fix something in memory"(RAE). Since this work is motivated on the desire to make computers learn like human beings, one immediate alternative would be a brain simulation. Unfortunately, brain simulation faces two main obstacles\cite{natarajan2014machine}:
+The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, and physics. However, it has been difficult to agree upon a precise definition of the process mainly because it depends on the viewpoint. When looking for the meaning of learning in the dictionary we can find: "acquire knowledge of something through study or experience", "conceiving something for mere appearances, or with little foundation", and "to fix something in memory"(RAE).
+
+Since this work is motivated on the desire to make computers learn like human beings, one immediate alternative would be a brain simulation. Unfortunately, brain simulation faces two main obstacles\cite{natarajan2014machine}:
 \begin{enumerate}
 \item  The detailed structure of the brain is not known yet
 \item Even if we knew the detailed structure of the brain, it does not exist a fast enough computer to simulate it. 
 \end{enumerate}
 
-Thus, the focus would need to be less on the specific mechanisms that biological brains use to organize themselves and more on the study of a fast and effective organizational algorithm along with a set of conditions which allow to construct models that imitate a specific and limited behavior of humans\cite{strom2007hebbian}. In this case, the behavior is the generation of a natural language such as English or Spanish. Our main source for teaching a computer to learn this task is data, so the key concept to think is learning from data. And translated to human behavioral terms, this concept refers to learning from experience
+Thus, the focus needs to be less on the specific mechanisms that biological brains use to organize themselves and more on the study of a fast and effective algorithm with a set of conditions which allow to construct models that imitate a specific and limited behavior of humans\cite{strom2007hebbian}, in this case, the generation of a natural language. Our main source for teaching a computer to learn this task is data, so the key concept to think is learning from data. This translated to human behavioral terms refers to learning from experience
 %\cite{marsland2015machine}. 
-
-Therefore, machine Learning is about making computers modify or adapt their actions so that these actions get more accurate, where accuracy is measured by how well the chosen actions reflect the correct ones. As there are several ways to achieve this task there are different types of machine learning explained as follows \cite{marsland2015machine}:
+Therefore, machine learning is about making computers modify or adapt their actions so that these actions get more accurate. Accuracy is measured by how well the chosen actions reflect the correct ones. As there are several ways to achieve this task there are different types of machine learning explained as follows \cite{marsland2015machine}:
 
 \begin{itemize}
-\item \textbf{Supervised Learning} It is said that it is supervised learning when a training set of examples with the correct responses or targets are provided and, based on this training set, the algorithm generalises to respond correctly to all possible inputs.
+\item \textbf{Supervised Learning} It is said that it is supervised learning when a training set of examples with the correct responses or targets are provided and, based on this training set, the algorithm generalizes to respond correctly to all possible inputs.
 
-\item \textbf{Unsupervised Learning} The algorithm tries to identify similarities between the inputs so that the inputs that have something in common are categorised together. In this type of learning correct responses are not provided.
+\item \textbf{Unsupervised Learning} The algorithm tries to identify similarities between the inputs so that the inputs that have something in common are categorized together. In this type of learning correct responses are not provided.
 
 \item \textbf{Reinforcement Learning} The algorithm gets told when the answer is wrong but does not get told how to correct it. Instead, it has to explore and try out different possibilities until it works out how to get the right answer. 
 
@@ -42,7 +43,7 @@ McCulloch and Pitts modeled an artificial neuron as a mathematical model in orde
 \label{fig:neuron}
 \end{figure}
 
-The signals are added and if the sum is greater than the threshold $\theta$ then, it is activated. The mathematical expression is as follows:\\
+The signals are added and if the sum is greater than the threshold $\theta$ , it is activated. The mathematical expression is as follows:\\
 \begin{equation} \label{eq:neuron}
 h=\sum_{i=1}^{m} w_i * x_i + b
 \end{equation}\ref{eq:neuron}
@@ -54,10 +55,10 @@ Thus the output of the neuron is the sum of the $m$ inputs ($x_i$) multiplied by
 
 A simple neural network is shown in Figure \ref{fig:nn}. It is formed by input units at the bottom, any number of intermediate or hidden layers, and a layer of output units at the top. Each of the units are  defined as a McCulloch and Pitts neuron. It should be noticed that connections within a layer from a higher to lower layers are forbidden. 
 
-Since everything but the weights is known,learning or training refers to finding a set of weights so that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector \cite{polk2002cognitive}. 
+Since everything but the weights is known, learning or training refers to finding a set of weights so that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector \cite{polk2002cognitive}. 
 
 Gradient descent is an optimization algorithm used to find the parameters  that minimize a cost function. The derivative with respect to the parameters is calculated and then equals zero. To calculate the derivative we can use backpropagation that is nothing more than the application of the chain rule.
-If the function is differentiable with respect to its parameters as is the case, gradient descent is a relatively efficient optimization method. This is because the computation of first-order partial derivatives with respect to all parameters is of the same computational complexity as just evaluating the function \cite{kingma2014adam}. 
+If the function is differentiable with respect to its parameters as in this the case, gradient descent is a relatively efficient optimization method. This is because the computation of first-order partial derivatives with respect to all parameters is of the same computational complexity as just evaluating the function \cite{kingma2014adam}. 
 
 In this case, the derivative with respect to the parameters turns out to be the error defined as the difference between the actual and the desired output vectors for every case. The problem here is that there is not a direct solution for the partial derivatives with respect to the weights equals zero. Therefore, we can not use the gradient descent for this last task but we can use a variant: stochastic gradient descent (SGD).
 %escribir bien lo de igualar a cero
@@ -79,7 +80,9 @@ w_ij \leftarrow w_ij+\nu E * x_i
 \caption{Neural Network}
 \end{figure}
 \\
-Since the function is concave in W, the network is expected to get better answers until eventually its performance stops improving. How much the weights are changed is controlled by the learning rate $\nu$. If it is too big, the weights will change a lot  making the network unstable so that it never settles down. On the other hand, if $\nu$ is too short it will be stable and resistant to errors and inaccuracies in the data, but it will take too long to learn. The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
+Since the function is concave in W, the network is expected to get better answers until eventually its performance stops improving.
+
+How much the weights are changed is controlled by the learning rate $\nu$. If it is too big, the weights will change a lot  making the network unstable so that it never settles down. On the other hand, if $\nu$ is too short it will be stable and resistant to errors and inaccuracies in the data, but it will take too long to learn. The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
 
 \section{Hebbian Learning}
 Another similar approach is the Hebbian learning proposed by Donald Hebb. He afirmed that the neurons might organize themselves into engrams in the brain. An engram is a memory fragment and it refers to the changes that occur in the brain n response to external stimuli \cite{strom2007hebbian}.
@@ -87,7 +90,7 @@ Another similar approach is the Hebbian learning proposed by Donald Hebb. He afi
 The general idea of the Hebb's basic principle is that any two cells or systems that are repeatedly active at the same time will tend to become 'associated', so that activity in one facilitates activity in the other \cite{morris1999hebb}.
 
 This means that if the firing of one neuron repeatedly leads to the firing of another, the influence of the first on the second increases. Thus increasing the likelihood that the  first will cause the second fire.
-It should be notices that the theory refers to neurons which excite neighboring neurons \cite{strom2007hebbian}.
+It should be noticed that the theory refers to neurons which excite neighboring neurons \cite{strom2007hebbian}.
 The mathematical expression is as follows:
 \begin{equation}
 \label{eq:hebbianrule}
@@ -102,7 +105,7 @@ w_ij (t+1)= w_ij(t)+\eta x_j(t)(x_i(t) - w_ij(t)x_j(t))
 Oja's rule regulates the amount of learning by decreasing the amount of adjustment that occurs as $w_ij$ increases.
 
 \subsection{Hopfield networks}
-Hopfield networks are a type of recurrent neural networks that are effective when used as associative memory \cite{hopfield1982neural}. This networks have the property that they may return a pattern similar to the one presented if such a pattern exists n its memory.The activation function is discrete with binary outputs ${-1,+1}$ and the neurons fire when the input accumulation exceeds the threshold of 0. Their connections have two restrictions:
+Hopfield networks are a type of recurrent neural networks that are effective when used as associative memory \cite{hopfield1982neural}. This networks have the property that they may return a pattern similar to the one presented if such a pattern exists in its memory.The activation function is discrete with binary outputs ${-1,+1}$ and the neurons fire when the input accumulation exceeds the threshold of 0. Their connections have two restrictions:
 \begin{enumerate}
 \item A neuron can not have a connection to itself
 \item All connections must be symmetrical meaning if $w_i$ is valid then $w_j$ is too with $w_ij=w_ji$
@@ -133,7 +136,8 @@ For tasks that involve sequential inputs it results better to use RNNs. This is 
 
 Although sequential data often arise through measurement of time series such as the rainfall measurements on successive days at a particular location, or the daily values of a currency exchange rate; sequential data can also arise in other contexts such as the sequence of words or characters in a an English sentence \cite{bishop2006pattern}. The order of the elements of a sentence as well as the relationships between them matter. Thus, to predict which is the most likely element to follow the sequence, it is important to retain this information.
 
-In this case the input data is the set of elements of a sentence or a set of sentences and the desired behaviour is to generate a new sequence that can adequately continue after the original one. Therefore, the target data for each element is the following one. The recurrent neural network receives an input vector $x=[x_1,...,x_T]$ which is passed through weighted connections to N recurrently connected hidden vector sequences $h^n=[h_1^n,...,h_T^n]$ and finally to the output vector sequence $y=[y_1,...,y_T]$ which will be compared to the target value for each observation.To compute the hidden layer activation the following equations are iterated from t=1 to T and from n=2 to N. \cite{graves2013generating}:
+% In this case the input data is the set of elements of a sentence or a set of sentences and the desired behaviour is to generate a new sequence that can adequately continue after the original one. Therefore, the target data for each element is the following one. 
+The recurrent neural network receives an input vector $x=[x_1,...,x_T]$ which is passed through weighted connections to N recurrently connected hidden vector sequences $h^n=[h_1^n,...,h_T^n]$ and finally to the output vector sequence $y=[y_1,...,y_T]$ which will be compared to the target value for each observation. To compute the hidden layer activation the following equations are iterated from t=1 to T and from n=2 to N. \cite{graves2013generating}:
 
 \begin{equation} \label{eq:hidden1}
 h_t^1= H( W_{ih^1} * x_t + W_{h^1 h^1}*h^1_{t-1} + b^1_h)
@@ -149,7 +153,9 @@ The W terms denote the weight matrices that connect the input layer to the first
 y_t=Y(\sum_{n=1}^{N} W_{h^{n}y} * h^n_t + b_y)
 \end{equation}
 
-Where $Y$ is the output layer function whose output vectors will need to be compared to the target values so that the network achieves the desired behaviour by minimizing the difference between both values. In Equation \ref{eq:error} the error was defined as this difference. Nevertheless, this definition is not adequate given the nature of the data. It is better to use the entropy to compute the loss since it returns a greater value the further it is from the correct target  value. The entropy is the negative logarithm of the predictive distribution as showed in equations \ref{eq:prdist} and \ref{eq:loss}:
+Where $Y$ is the output layer function whose output vectors will need to be compared to the target values so that the network achieves the desired behaviour by minimizing the difference between both values.
+%In Equation \ref{eq:error} the error was defined as this difference. Nevertheless, this definition is not adequate
+Given the nature of the data, it is adequate to use the entropy to compute the loss since it returns a greater value the further it is from the correct target  value. The entropy is the negative logarithm of the predictive distribution as showed in equations \ref{eq:prdist} and \ref{eq:loss}:
 
 \begin{equation} \label{eq:prdist}
 P(x)=\Pi_{t=1}^{T} P(x_{t+1}|y_t)
@@ -164,9 +170,9 @@ The network now can be trained using the gradient descent to know how the parame
 
 \subsubsection{Backpropagation Through Time}
 
-The objective here is to understand how the $W$ vector should change to decrease the loss $L(x)$. To achieve this, the gradient of the loss with respect to the weights should be computed using backpropagation through time (BTT). This process computes the gradients of expressions through recursive application of the chain rule. 
+The objective here is to understand how the $W$ vector should change to decrease the loss $L(x)$. Therefore, the gradient of the loss with respect to the weights should be computed using backpropagation through time (BTT). This process computes the gradients of expressions through recursive application of the chain rule. 
 
-BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights\cite{lecun2015deep}. Here, the model is presented as a deep multi-layer one where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. Hence, the constraint can be satisfied by adding the gradients for W at each time step. Although it is a constraint it can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
+BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights\cite{lecun2015deep}. Here, the model is presented as a deep multi-layer one where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. Hence, the constraint can be satisfied by adding the gradients for W at each time step. This constraint can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
 
 \begin{figure}
 \label{fig:unfold}
@@ -190,7 +196,7 @@ As described before, RNNs are very powerful dynamic systems. Unfortunately train
 
 If the  weight matrix is smaller than 1, the gradient signal can get so small that so over many time steps it can vanish. Conversely, if the eigenvalue of the weight matrix is larger than 1, it can lead to a situation where the gradient signal is so large that it can explode causing learning to diverge. 
 
-The exploding gradients problem refers to the large increase in the norm of the gradient during training caused by the explosion of the long term components. On the other hand, the vanishing gradients problem is presented when long term components go exponentially fast to norm 0 making impossible for the model to learn correlation between temporally distant events \cite{pascanu2013difficulty} which was the main reason for choosing RNNs for this work. 
+% The exploding gradients problem refers to the large increase in the norm of the gradient during training caused by the explosion of the long term components. On the other hand, the vanishing gradients problem is presented when long term components go exponentially fast to norm 0 making impossible for the model to learn correlation between temporally distant events \cite{pascanu2013difficulty} which was the main reason for choosing RNNs for this work. 
 
 \subsubsection*{The exploding gradients problem}
  The fact that the norm of the gradient increases during training is a problem because the computation becomes inefficient and it increases the response time. One simple mechanism to deal with this problem is to rescale them whenever they go over a threshold. To choose wisely the threshold, one good heuristic is to look at statistics on the average norm over a sufficiently large number of updates. In this way, we can handle very abrupt changes in norm. In this case, the algorithm can be thought of as adapting the learning rate based on the norm of the gradient  \cite{pascanu2013difficulty}.
@@ -202,13 +208,13 @@ The vanshing gradients problem makes it difficult to learn to store information 
 
 On the other hand, having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions. \cite{graves2013generating}
 
-A lot of research work has been made to propose solutions to this problem. The idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow it to easily “memorize” information for an extended number of timesteps \cite{zaremba2014recurrent}.
+A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow it to easily “memorize” information for an extended number of timesteps \cite{zaremba2014recurrent}.
 
 
 \subsubsection{Long Short-Term Memory Networks}
 Long Short-term Memory (LSTM) is an RNN architecture. The difference is that instead of using a sigmoid function as hidden layer function, LSTMs use memory cells to store information. The new arquitecture has three gates and a memory cell. The gates are for input , forget, and output functions. The memory cell has a connection to itself at the next time step with a weight of one, meaning it copies its own real-valued state and accumulates the external signal\cite{lecun2015deep}. Thus, it can decide to overwrite the memory cell, retrieve it, or keep it for the next time step\cite{zaremba2014recurrent}. 
 
-LSTMs are better at storing and accessing information than standard RNNs, since the cells improve the performance when finding and exploiting long range dependencies in the data. Additionally, the full gradient can be calculated with backpropagation through time.\cite{graves2013generating}
+LSTMs are better at storing and accessing information than standard RNNs- The cells improve the performance when finding and exploiting long range dependencies in the data. Additionally, the full gradient can be calculated with backpropagation through time.\cite{graves2013generating}
 
 \begin{figure}
 \label{fig:lstm}
@@ -245,15 +251,16 @@ h_t=o_t*tanh(C_t)
 
 \subsection{Regularization}
 
-Successful applications of neural networks require good regularization. Although deep neural nets with a huge number of parameters are very powerful machine learning systems they tend to overfit at training time. Combining many different large neural nets at test time is not an efficient solution to address this problem since large networks are also slow to use. 
+Successful applications of neural networks require good regularization. Although deep neural nets with a huge number of parameters are very powerful machine learning systems, they tend to overfit at training time. 
 
 Fortunately, dropout is a technique for addressing this problem. The key idea is to randomly drop units (along with their connections) from a neural network during training in order to prevent the units from co-adapting too much \cite{srivastava2013improving}. However, when working with recurrent neural networks and specifically with LSTM networks it is not desired to erase all the information from the units. It is extremely important that the units remember events that occurred many timesteps in the past. This is the reason for \cite{zaremba2014recurrent} to only use drop out in the non-recurrent connections. 
 
-Nevertheless, in \cite{gal2015theoretically} they develop a technique to effectively use drop out in all connections in a RNN: Variational RNN. In this dropout variant, the same dropout mask at each time step is repeated for both inputs, outputs, and recurrent layers, meaning that the same network units are dropped at each time step. The interpretation for this work (character-level language modelling) is to force the model not to rely on single characters for its task. In the same work they found that the optimal dropout
-probabilities are between 0.3 and 0.5.
+Nevertheless, in \cite{gal2015theoretically} they develop a technique to effectively use drop out in all connections called Variational RNN. In this dropout variant, the same dropout mask at each time step is repeated for both inputs, outputs, and recurrent layers, meaning that the same network units are dropped at each time step. 
+%The interpretation for this work (character-level language modelling) is to force the model not to rely on single characters for its task.
+Finally, they found that the optimal dropout probabilities are between 0.3 and 0.5.
 
 \subsection{Gradient Descent Variants}
-As previously Gradient Descent is a an optimization algorithm used to find the parameters that minimize an objective function
+As previously introduced Gradient Descent is a an optimization algorithm used to find the parameters that minimize an objective function
 There are three variants of the gradient descent: batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. The variants differ in how much data is used to compute the gradient of the objective function. 
 
 The first variant computes the gradient of the cost function with respect to the parameters($\theta$) for the entire dataset as in \ref{eq:batchgd}.
@@ -275,14 +282,15 @@ Finally, the mini-batch gradient descent performs an update for every mini-batch
 \theta=\theta-\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
 \end{equation}
 
-In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allow the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work\cite{ruder2016overview}. 
+In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allows the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work\cite{ruder2016overview}. 
 
 
 \subsection{Gradient Descent Optimization Algorithms}
-To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find the parameters that minimize an objective function. Mini-batch gradient descent is stochastic since the objective function is composed of a sum of subfunctions evaluated at different subsamples of data. Another source of noise may also come inherent function noise and from dropout regularization \cite{kingma2014adam}. 
+To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find the parameters that minimize an objective function. Mini-batch gradient descent is stochastic since the objective function is composed of a sum of subfunctions evaluated at different subsamples of data. Another source of noise may also come from dropout regularization \cite{kingma2014adam}. 
 
 Choosing the proper learning rate $\eta$ is a difficult and important task as explained in the section "Neural Networks". There is a lot of research around this topic. In \cite{robbins1951stochastic} they try to adjust the learning rate by reducing the learning rate according to a pre-defined schedule or when the change in the objective between epochs falls below a threshold. Another issue is that the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. One last challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For this cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
 %fuente:http://sebastianruder.com/optimizing-gradient-descent/
+
 The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus speed up SGD. The last ones, adapt the updates to each individual parameter to perform larger updates for infrequent and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.
 
 Momentum \cite{qian1999momentum} is a method that helps accelerate gradient descent in the relevant direction and dampens oscillations by taking in account a fraction $\phi$ of the update vector of the past time step to the current update vector:
@@ -310,7 +318,7 @@ m_t=\beta_1 m_{t-1} + (1-\beta_1)g_t
 \nu_t=\beta_2 \nu_{t-1} + (1-\beta_2)g^2_t
 \end{equation}
 
- Where $m$ and $\nu$ are estimates of the first moement and the second moment of the gradients respectively, meaning the mean and the uncentered variance. Both are initialized as vectors of zeros and thus they are biased towards zero so they are corrected as follows:
+ Where $m$ and $\nu$ are estimates of the first moment and the second moment of the gradients respectively, meaning the mean and the uncentered variance. Both are initialized as vectors of zeros and thus they are biased towards zero, then they are corrected as follows:
 \begin{equation}
 \hat{m_t}=\frac{m_t}{1-\beta^t_1}
 \end{equation}
@@ -326,29 +334,31 @@ Finally, the next equation is computed to update the parameters:
 
 Where $\epsilon$ is a smoothing term to avoid the zero division. The default proposed values are $10^-8$ for $\epsilon$, 0.9 for $\beta_1$ and 0.999 for $\beta_2$.
 
-Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually become infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. It has beeb shown empirically that Adam works well in practice and better than othr adaptive-learning algorithms including the RMSProp and therefore it is the one chosen for this work.
+Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually become infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. 
 
-\section{Language Modelling}
-There are a lot of technology applications for language modelling. For example, speech recognition, machine translation, document classification and routing, optical character recognition, information retrieval, handwriting recognition, spelling correction, and many more.
+It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and therefore it is the one chosen for this work.
 
-Language modelling, also refered as text prediction is possible by generating novel sequences from a trained network assuming the predictions are probabilistic. To achieve this task, samples from the network's output distribution must be generated and then the sample is used as input at the next step. In this way the network treats its inventions as if they were real \cite{graves2013generating}.
+\section{Language Modeling}
+There are a lot of technology applications for language modeling. For example, speech recognition, machine translation, document classification, information retrieval, handwriting recognition, spelling correction, and many more.
+
+Language modeling, also referred as text prediction is possible by generating novel sequences from a trained network assuming the predictions are probabilistic. Samples from the network's output distribution must be generated and then the sample is used as input at the next step. In this way the network treats its inventions as if they were real \cite{graves2013generating}. Therefore, text must be mapped to a an adequate representation that the network can understand.
 
 \subsection{Text Representation}
-Text data is discrete, and is typically represented using one-of-k representation also called one-hot representation. This consists of input vectors of the same length as the number of text classes $K$. Each entry of the vector fed in a time $t$ and belonging to class $k$ is zero except for the $kth$, which is one. The predictive distribution function in equation \ref{eq:prdist} is therefore a multinomial distribution, which can be parameterised by a softmax function at the output layer as follows \cite{graves2013generating}:
+Text data is discrete, and is typically represented using one-of-K representation also called "one-hot". This consists of input vectors of the same length as the number of text classes ($K$). Each entry of the vector fed in a time $t$ and belonging to class $k$ is zero except for the $kth$, which is one. The predictive distribution function in equation \ref{eq:prdist} is therefore a multinomial distribution, which can be parameterised by a softmax function at the output layer as follows \cite{graves2013generating}:
 
 \begin{equation} \label{eq:multinomial}
 P(x_{t+1}=k|y_t)=y^k_t=\frac{\mathrm{e}^{Y^k_t}}{ \sum_{k=1}^{K} \mathrm{e}^{Y^k_t}}
 \end{equation}
 
-The fact that equation \ref{eq:multinomial} is multinomial implies that unlike the distribution function \ref{eq:prdist}, there is more than one result,$K$ in this case, one for each text class.  It turns the output into a probability distribution over the categories making the values of the network outputs sum to 1. Thus, the network indicates the probability for each character to be the next one.
+The fact that equation \ref{eq:multinomial} is multinomial implies that unlike the distribution function \ref{eq:prdist}, there is more than one result, $K$ in this case, one for each text class.  It turns the output into a probability distribution over the categories making the values of the network outputs sum to 1. Thus, the network indicates the probability for each character to be the next one.
 
-The categorical cross-entropy loss the standard loss function for multilabel classification, which basically penalizes the network more the further off it is from the correct label. The next step is to express the loss function for equation \ref{eq:multinomial}. Substituing it into the original entropy function \ref{eq:loss} it expresses the cross entropy as follows \cite{graves2013generating}:
+The categorical cross-entropy loss is the standard loss function for multilabel classification, which basically penalizes the network more the further off it is from the correct label. The next step is to express the loss function for equation \ref{eq:multinomial}. Substituing it into the original entropy function \ref{eq:loss} it expresses the cross entropy as follows \cite{graves2013generating}:
 
 \begin{equation} \label{eq:crossEntropy}
 L(x)=-y \sum_{t=1}^{T} log y^{x_t+1}_t
 \end{equation}
 
-Finally, the derivative of \ref{eq:crossEntropy} after using the chain rule to derive the gradient, and after cancelling out a lot of terms, turns out to be a simple and interpretible expression as showed in Eq. \ref{eq:gradient}.
+Finally, the derivative of \ref{eq:crossEntropy} after using the chain rule to derive the gradient, and after canceling out a lot of terms, turns out to be a simple expression as showed in Eq. \ref{eq:gradient}.
 
 \begin{equation} \label{eq:cgradient}
 \frac{\delta L(x)}{\delta Y^k_t}=- y^k_t - 1 (y_t=k)
@@ -357,9 +367,9 @@ Finally, the derivative of \ref{eq:crossEntropy} after using the chain rule to d
 When it is not the correct text class $(y_t \not= k)$ the values will be positive, meaning that increasing this score would cause an increased loss. On the other hand, when it is the correct class $(y_t = k)$, the sign will be negative, meaning that increasing this score would reduce the loss.
 
 
-The last decision that must be made is about choosing the text classes. This is directly related with the level of language modelling that can be either word-level or character-level.
+The last decision that must be made is about choosing the text classes. This is directly related with the level of language modeling that can be either word-level or character-level.
 
-\subsubsection{Word-level language modelling}
+\subsubsection{Word-level language modeling}
 
 In most cases, text prediction is performed at the word level. The number of text classes $K$ is therefore the number of words in the dictionary \cite{graves2013generating}.
 
@@ -367,17 +377,15 @@ In the first layer, each word creates word vectors and the other ones learn to c
 
 Learning word vectors turned out to work very well when the word sequences come from a large corpus of real text. However, for realistic tasks, where the number of words often exceeds 100,000, this can be rather problematic \cite{lecun2015deep}. 
 %se tendría que hacer mayor minado pues dos palabras escritas de diferente manera pe por ortografía serían dos diferentes 
+ Having so many classes demands a huge amount of training data to adequately cover the possible contexts for the words. Furthermore, word-level models are not applicable to text data containing non-word strings, such as multi-digit numbers or web addresses.\cite{graves2013generating}
 
-Word-level language modelling has several limitations. Having so many classes demands a huge amount of training data to adequately cover the possible contexts for the words. Furthermore, word-level models are not applicable to text data containing non-word strings, such as multi-digit numbers or web addresses.\cite{graves2013generating}
+\subsubsection{Character-level language modeling}
 
-\subsubsection{Character-level language modelling}
+Character-level language modeling has been found to give slightly worse performance than equivalent word-level models. Nevertheless, predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings \cite{graves2013generating}. 
 
+This language modeling option overcomes the great class number limitations of word-level language modeling. In this case, the predictions are not limited to the vocabulary words and it is applicable to text data containing non-word strings. Here, the number of text classes $K$ is defined by the number of different characters in the training data. It also overcomes the language limitation, meaning that the input data can be indifferently in Spanish, English, Chinese, etc.. 
 
-Character-level language modelling has been found to give slightly worse performance than equivalent word-level models. Nevertheless, predicting one character at a time is more interesting from the perspective of sequence generation, because it allows the network to invent novel words and strings \cite{graves2013generating}. 
-
-This language modelling option overcomes the great class number limitations of word-level language modelling. In this case, the predictions are not limited to the vocabulary words and it is applicable to text data containing non-word strings. Here, the number of text classes $K$ is defined by the number of different characters in the training data. It also overcomes the language limitation, meaning that the input data can be indifferently in Spanish, English, Chinese, etc.. 
-
-For these reasons character-level modelling is the one chosen for this work.
+For these reasons character-level modeling is the one chosen for this work.
 
  
 
