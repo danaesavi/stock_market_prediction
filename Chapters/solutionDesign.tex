@@ -5,15 +5,15 @@
 	The limits of my language mean the limits of my world.
 \end{chapterquote}
 
-The model was implemented in Keras, a high-level neural networks library written in Python. It can run on top of either TensorFlow or Theano and with CPU or GPU,. It supports recurrent networks, and arbitrary connectivity schemes including multi-input and multi-output training. 
+The model was implemented in Keras, a high-level neural networks library written in Python. It can run on top of either TensorFlow or Theano and with CPU or GPU. It supports recurrent networks, and arbitrary connectivity schemes including multi-input and multi-output training. 
 
 \section{Text representation}
 
-In this section we explain how characters are mapped to an adequate representation that the network can understand. Training the RNN on many shorter sequences is just as effective than training the whole string at once, provided they are several hundred characters or more long. This is a better choice since to compute the exact gradient of the log probability of the training set, the RNN needs to process the entire training set sequentially and store the hidden state sequence in order to apply BTT. This task is infeasible due to the size of the training sets as well as unnecessary\cite{sutskever2011generating}.
+In this section we explain how characters are mapped to an adequate representation that the network can understand. Training the RNN on many shorter sequences is just as effective as training the whole string at once. Also this is a better choice since to compute the exact gradient of the log probability of the training set, the RNN needs to process the entire training set sequentially and store the hidden state sequence to apply BTT. This task is infeasible due to the size of the training sets as well as unnecessary\cite{sutskever2011generating}.
 
  Therefore, to represent the text of length N containing M different characters, we focus on specific text windows of length F that we check every step size S. Then, the number of sequences is given by the integer division: $NbSq=(N-F)/S$. 
 
-For example, if we have the phrase "The limits of my language are the limits of my world" we have a text of length $N=52$ and $M=19$ different characters. If we set $F=4$ and $S=2$ we have 24 sequences whose target is its next character as showed in table \ref{tab:seqch}.
+For example, if we have the phrase of Ludwig Wittgenstein "The limits of my language are the limits of my world" we have a text of length $N=52$ and $M=19$ different characters. If we set $F=4$ and $S=2$ we have 24 sequences whose target is its next character as showed in table \ref{tab:seqch}.
 
 \begin{table}{}
 
@@ -22,10 +22,10 @@ For example, if we have the phrase "The limits of my language are the limits of 
 \end{tabular}
 \begin{tabular}{c c c c c c c c c c c c c c c c c c c c c}
 \textbf{No.}&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18\\
-\textbf{Characters:}& " "& T& a& d& e& f& g& h& i& l& m& n& o& r& s& t& u& w& y\\
+\textbf{Characters:}& " "& T& a& d& e& f& g& h& i& l& m& n& o& r& s& t& u& w& y\\https://preview.overleaf.com/public/dvwgvfjpjgzz/images/9c4e1806cd4b1e85cd91e9f211717f2c0d977d8c.jpeg
 \end{tabular}
 \caption{Number of Characters}
-\end{table}
+\end{table}https://preview.overleaf.com/public/dvwgvfjpjgzz/images/9c4e1806cd4b1e85cd91e9f211717f2c0d977d8c.jpeg
 \begin{table}{}
 \begin{tabular}{c c c c c c c c c c c c c c}
 \textbf{Sequence:} &0&1&2 & 3 &4&5&6&7&8&9&10&11\\
@@ -48,15 +48,15 @@ In this work we used sequences of length $F=250$ as in \cite{sutskever2011genera
 
 \section{Network Architecture}
 
-The model has an input, a hidden and an output layer. The input layer has the same number as the total of sequences $(NbSq)$. Each input is of dimensions $FxM$. The network has one single hidden layer with 1000 LSTM units as suggested in \cite{graves2013generating}.The LSTM has a drop out of 0.5 implemented  in both, recurrent and non-recurrent connections as suggested in \cite{gal2015theoretically}. 
+The model has an input, a hidden and an output layer. The input layer has the same number as the total of sequences $(NbSq)$. Each input is of dimensions $FxM$. The network has one single hidden layer with 1000 LSTM units as suggested in \cite{graves2013generating}.The LSTM has a drop out of 0.5 implemented  in both, recurrent and non-recurrent connections as described in \cite{gal2015theoretically}. 
 
 Finally, because this is a classification problem we use a fully connected output layer with the same number of neurons as unique characters ($M$). It uses the softmax function as activation function to make predictions for each of the classes and the cross-entropy function as loss function. The network implements the  ADAM SGD optimizer in order to adapt the learning rate dynamically as the data is sparse. 
 
-The next character is then the one with the greatest probability that is computed at the last step. The network scheme is showed in Fig.\ref{fig:netarch}  Where the $x_{i}$'s are the $M$ input sequences and $x_o$ is the predicted next character. Of course, $x_0$ needs to be translated from one-of-K representation to character representation at the end of the process
+The next character is then the one with the greatest probability that is computed at the last step. The network scheme is showed in Fig.\ref{fig:netarch}  Where the $x_{i}$'s are the $M$ input sequences and $x_o$ is the predicted next character. Of course, $x_0$ needs to be translated from one-of-K representation to character representation at the end of the process.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6cm,height=6cm]{Modelo1.PNG}
+\includegraphics[width=6cm,height=7cm]{arquitectura.PNG}
 \caption{Network Architecture}
 \label{fig:netarch}
 \end{figure}

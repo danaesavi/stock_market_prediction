@@ -1,0 +1,282 @@
+\chapter{Theoretical Framework}
+\label{ch:theosm}
+
+% \begin{chapterquote}{Herbert Simon}
+% Human beings, viewed as behaving systems, are quite simple.
+% The apparent complexity of our behavior over time is largely a
+% reflection of the complexity of the environment in which we find
+% ourselves.
+% \end{chapterquote}
+
+
+\section{Machine Learning}
+
+The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, and physics. 
+Machine learning is about making computers modify or adapt their actions so that these actions get more accurate. Accuracy is measured by how well the chosen actions reflect the correct ones. As there are several ways to achieve this task there are different types of machine learning explained as follows \cite{marsland2015machine}:
+
+\begin{itemize}
+\item \textbf{Supervised Learning} a training set of examples with the correct responses or targets are provided and, based on this training set, the algorithm generalizes to respond correctly to all possible inputs.
+
+\item \textbf{Unsupervised Learning} The algorithm tries to identify similarities between the inputs so that the inputs that have something in common are categorized together. In this type of learning correct responses are not provided.
+
+\item \textbf{Reinforcement Learning} The algorithm gets told when the answer is wrong but does not get told how to correct it. Instead, it has to explore and try out different possibilities until it works out how to get the right answer. 
+
+\item \textbf{Evolutionary learning} In this type of learning, biological evolution is seen as a learning process where the organisms adapt to improve their survival rates and chance of having offspring in their environment. It uses an idea of fitness which corresponds to a score for how good the solution is. 
+\end{itemize}
+
+\section{McCulloch and Pitts Neurons}
+McCulloch and Pitts modeled an artificial neuron as a mathematical model in order to extract only the essentials required to accurately represent the entity, removing all the obscured details. They took in account three basic elements: a set of weighted inputs ($w_i$), an adder that sums the input signals, and an activation function that decides if the neuron fires to the current inputs.
+\begin{figure}[h]
+\centering
+ 
+\includegraphics[width=10cm,height=5cm]{model_of_neuron.jpg}
+\caption{McCulloch and Pitt's Neuron Model}
+\label{fig:neuron}
+\end{figure}
+
+The signals are added and if the sum is greater than a threshold $\theta$ , it is activated. The mathematical expression is as follows:\\
+\begin{equation} \label{eq:neuron}
+h=\sum_{i=1}^{m} w_i * x_i + b
+\end{equation}\ref{eq:neuron}
+
+Thus the output of the neuron is the sum of the $m$ inputs ($x_i$) multiplied by the weights ($w_i$). Furthermore, units can be given biases by introducing an extra input to each unit which always has a value of 1. The weight on this extra input is called the bias (b) and is equivalent to a threshold of the opposite sign \cite{polk2002cognitive}. 
+
+
+\section{Neural Networks}
+
+A simple neural network is shown in Figure \ref{fig:nn}. It is formed by input units at the bottom, any number of intermediate or hidden layers, and a layer of output units at the top. Each of the units are  defined as a McCulloch and Pitts neuron. It should be noticed that connections within a layer from a higher to lower layer are forbidden. 
+
+Since everything but the weights is known, learning or training refers to finding a set of weights so that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector \cite{polk2002cognitive}. Thus, learning is translated to an optimization problem.
+
+Gradient descent is an optimization algorithm used to find the parameters  that minimize a cost function. The derivative of the cost function with respect to the parameters is calculated and then equals zero. To calculate the derivative we can use backpropagation that is nothing more than the recursive application of the chain rule.
+%If the function is differentiable with respect to its parameters as in this case, gradient descent is a relatively efficient optimization method. This is because the computation of first-order partial derivatives with respect to all parameters is of the same computational complexity as just evaluating the function \cite{kingma2014adam}. 
+
+In this case, the derivative with respect to the parameters turns out to be the error defined as the difference between the actual and the desired output vectors for every case. Now the problem is that there is not a direct solution for the partial derivatives with respect to the weights equals zero. Therefore, we can not use the gradient descent for this last task but we can use a variant: stochastic gradient descent (SGD).
+%escribir bien lo de igualar a cero
+SGD updates the weights to the direction of the gradient. The error E in equation \ref{eq:error} is multiplied by a parameter called the learning rate $\nu$ and by the input $x_i$. This value is added to the weight ($w_ij$) for each j neuron and input i.
+
+\begin{equation}
+\label{eq:error}
+E=(t_j - y_i)
+\end{equation}
+\begin{equation}
+\label{eq:weight}
+w_ij \leftarrow w_ij+\nu E * x_i
+\end{equation} where $0>=\nu<=1$ \\
+\ref{eq:weight}
+\begin{figure}
+\label{fig:nn}
+\center
+\includegraphics[width=10cm,height=5cm]{NN.jpg}
+\caption{Neural Network}
+\end{figure}
+\\
+Since the function is concave in W, the network is expected to get better answers until eventually its performance stops improving.
+
+How much the weights are changed is controlled by the learning rate $\nu$. If it is too big, the weights will change a lot  making the network unstable so that it never settles down. On the other hand, if $\nu$ is too short it will be stable and resistant to errors and inaccuracies in the data, but it will take too long to learn. 
+
+%The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
+
+\section{Support Vector Machines}
+Support vector machines can be seen as an optimization of the neural networks. 
+%basar en apuntes de minería y buscar documentación
+\section{Deep Learning}
+As explained before, learning in the context of artificial neural networks refers to finding the adequate weights that make the network exhibit the desired behavior. Depending on the problem and how the neurons are connected, such behavior may require long causal chains of computational stages. Each stage transforms the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages \cite{schmidhuber2015deep}. This work will focus on recurrent neural networks, a subfield of deep learning in artificial neural networks (NNs).
+%Another way of understanding deep learning is by studying neural networks as a representation learning method. This kind of methods allow a machine to be fed with raw data and to automatically discover the representations needed for detection or classification. Hence, deep learning methods are representation learning methods with multiple levels of representation. With the composition of enough transformations, very complex functions can be learned \cite{lecun2015deep}. 
+
+\subsection{Recurrent Neural Networks}
+
+A deep recurrent neural network (RNN) is a deep artificial neural network but with a different structure. In the deep case, connections among hidden units are allowed. Furthermore, these connections are associated with a time delay enabling the model to retain information about the past inputs. In this way, temporal correlations between events that are possibly far away from each other in the data can be discovered \cite{pascanu2013difficulty}.
+
+\begin{figure}
+\label{fig:rnn}
+\center
+\includegraphics[width=3.5cm,height=5cm]{rnn.png}
+\caption{Recurrent Neural Network}
+\end{figure}
+For tasks that involve sequential inputs it results good to use RNNs. This is mainly because RNNs process an input sequence one element at a time and maintain in their hidden units a "state vector". This vector implicitly contains information about the history of all the past elements of the sequence.\cite{lecun2015deep} 
+
+Sequential data arises through measurement of time series such as the rainfall measurements on successive days at a particular location,the daily values of a currency exchange rate and, to our interest, the stock market price in a time interval.The order of the prices as well as the relationships between them matter. Thus, to predict which is the most likely price to follow the sequence, it is important to retain this information.
+
+% In this case the input data is the set of elements of a sentence or a set of sentences and the desired behaviour is to generate a new sequence that can adequately continue after the original one. Therefore, the target data for each element is the following one. 
+The recurrent neural network receives an input vector $x=[x_1,...,x_T]$ which is passed through weighted connections to N recurrently connected hidden vector sequences $h^n=[h_1^n,...,h_T^n]$ and finally to the output vector sequence $y=[y_1,...,y_T]$ which will be compared to the target value for each observation. To compute the hidden layer activation the following equations are iterated from t=1 to T and from n=2 to N. \cite{graves2013generating}:
+
+\begin{equation} \label{eq:hidden1}
+h_t^1= H( W_{ih^1} * x_t + W_{h^1 h^1}*h^1_{t-1} + b^1_h)
+\end{equation}
+
+\begin{equation} \label{eq:hidden}
+h_t^n= H(W_{ih^n} * x_t + W_{h^{n-1}  h^n} * h^{n-1}_t +W_{h^n h^n} * h^n_{t-1}+ b^n_h)
+\end{equation}
+
+The W terms denote the weight matrices that connect the input layer to the first hidden layer, two hidden layers between them or a hidden layer to an output layer. $H$ is the hidden layer function which usually is an application of a sigmoid function like the hyperbolic tangent. Finally, given the hidden sequences, the output sequence is computed as follows:
+
+\begin{equation} \label{eq:output}
+y_t=Y(\sum_{n=1}^{N} W_{h^{n}y} * h^n_t + b_y)
+\end{equation}
+
+Where $Y$ is the output layer function whose output vectors will need to be compared to the target values so that the network achieves the desired behaviour by minimizing the difference between both values.
+%In Equation \ref{eq:error} the error was defined as this difference. Nevertheless, this definition is not adequate
+The network now can be trained using the gradient descent to learn how the parameters, meaning the $W$ vector, should change to decrease the loss  $L(x)$. Therefore, the partial derivatives of the loss with respect to the weights should be computed. This can be achieved using backpropagation through time (BTT). This process computes the gradients of expressions through recursive application of the chain rule.
+
+\subsubsection{Backpropagation Through Time}
+BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights\cite{lecun2015deep}. Here, the model is presented as a deep multi-layer where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. 
+
+The constraint can be satisfied by adding the gradients for W at each time step. This constraint can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
+
+\begin{figure}
+\label{fig:unfold}
+\center
+\includegraphics[width=10cm,height=5cm]{unfold.png}
+\caption{Unfolded Recurrent Neural Network}
+\end{figure}
+
+%The key insight in BTT is that the calculation of the derivative of the objective with respect to the input of a module can be done by working backwards from the gradient with respect to the output of that module and repeating this process through all the layers or, in this case, through all the time steps \cite{schmidhuber2015deep}.
+
+%a lo mejor aquí poner lo del -1
+
+\subsubsection{RNNs Training Issues}
+As described before, RNNs are very powerful dynamic systems. Unfortunately training them has proved to be problematic. During the gradient backpropagation phase, the gradient signal can end up being multiplied a large number of times by the weight matrix associated with the connections between the neurons of the recurrent hidden layer. This causes that the backpropagated gradients either grow or shrink at each time step. Thus, the magnitude of weights in the transition matrix may have a strong impact on the learning process.
+
+If the  weight matrix is smaller than 1, the gradient signal can get so small that so over many time steps it can vanish. Conversely, if the eigenvalue of the weight matrix is larger than 1, it can lead to a situation where the gradient signal is so large that it can explode causing learning to diverge. 
+
+% The exploding gradients problem refers to the large increase in the norm of the gradient during training caused by the explosion of the long term components. On the other hand, the vanishing gradients problem is presented when long term components go exponentially fast to norm 0 making impossible for the model to learn correlation between temporally distant events \cite{pascanu2013difficulty} which was the main reason for choosing RNNs for this work. 
+
+\subsubsection*{The exploding gradients problem}
+ The fact that the norm of the gradient increases during training is a problem because the computation becomes inefficient and also increases the response time. One simple mechanism to deal with this problem is to rescale it whenever it goes over a threshold. To choose wisely the threshold, one good heuristic is to look at statistics on the average norm over a sufficiently large number of updates. In this way, we can handle very abrupt changes in norm as it adapts the learning rate based on the norm of the gradient  \cite{pascanu2013difficulty}.
+
+\subsubsection*{The vanishing gradients problem}
+
+The vanshing gradients problem makes it difficult to learn to store information. Having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions. \cite{graves2013generating}
+
+%This amnesia makes them prone to instability when generating sequences. The main problem is that if the network's predictions  are only based on the last few inputs, and these inputs were themselves predicted by the network, it has little opportunity to recover from past mistakes.
+
+A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow it to easily “memorize” information for an extended number of time steps \cite{zaremba2014recurrent}.
+
+\subsubsection{Long Short-Term Memory Networks}
+Long Short-term Memory (LSTM) is an RNN architecture. The difference is that instead of using a sigmoid function as hidden layer function, LSTMs use memory cells to store information. The new architecture has three gates and a memory cell. The gates are for input, forget, and output functions. The memory cell has a connection to itself at the next time step with a weight of one, meaning it copies its own real-valued state and accumulates the external signal \cite{lecun2015deep}. Thus, it can decide to overwrite the memory cell, retrieve it, or keep it for the next time step\cite{zaremba2014recurrent}. 
+
+LSTMs are better at storing and accessing information than standard RNNs. The cells improve the performance when finding and exploiting long range dependencies in the data. Additionally, the full gradient can be calculated with backpropagation through time as well.\cite{graves2013generating}
+
+\begin{figure}
+\label{fig:lstm}
+\center
+\includegraphics[width=10cm,height=5cm]{gates.PNG}
+\caption{Long Short Term Memory Network}
+\end{figure}
+
+The forget gate $f_t$ decides the content to keep for each time step $t$. It is a sigmoid function that takes in account the $h_{t-1}$ and the present input $x_t$ and returns a number between 0 and 1 where 0 means "forget it" and 1 means "keep it". 
+
+The next step is to calculate the input gate to decide which values to update using a sigmoid function (Eq. \ref{eq:input}). Then, the new candidates are computed by a tanh function (Eq. \ref{eq:candidate}), and the memory cell update is done by combining the previous functions as explained in Eq. \ref{eq:update}.
+
+\begin{equation} \label{eq:forget}
+f_t=\sigma(W_f*(h_{t-1},x_t)+b_f)
+\end{equation}
+\begin{equation} \label{eq:input}
+i_t=\sigma(W_i*(h_{t-1},x_t)+b_i)
+\end{equation}
+\begin{equation} \label{eq:candidate}
+C'_t=tanh(W_C*(h_{t-1},x_t)+b_C)
+\end{equation}
+\begin{equation} \label{eq:update}
+C_t=f_t*C_{t-1}+i_t*C'_t
+\end{equation}
+
+Finally, the output function decides which parts of the memory cell to return with another sigmoid function (Eq. \ref{eq:output}), and lastly the $h_t$ is calculated (Eq. \ref{eq:hidden}) with the output function and a tanh function of the memory cell to push the values into the interval [-1,1].
+
+\begin{equation} \label{eq:output}
+o_t=\sigma(W_o*(h_{t-1},x_t)+b_o)
+\end{equation}
+\begin{equation} \label{eq:hidden}
+h_t=o_t*tanh(C_t)
+\end{equation}
+
+\subsection{Regularization}
+
+Successful applications of neural networks require good regularization. Although deep neural networks with a huge number of parameters are very powerful machine learning systems, they tend to overfit at training time causing an error with great variance. 
+
+Fortunately, dropout is a technique for addressing this problem. The key idea is to randomly drop units (along with their connections) from a neural network during training in order to prevent the units from co-adapting too much \cite{srivastava2013improving}. However, when working with recurrent neural networks and specifically with LSTM networks it is not desired to erase all the information from the units. It is extremely important that the units remember events that occurred many time steps in the past. This is the reason for \cite{zaremba2014recurrent} to only use drop out in the non-recurrent connections. 
+
+Nevertheless, in \cite{gal2015theoretically} they develop a technique to effectively use drop out in all connections called Variational RNN. In this dropout variant, the same dropout mask at each time step is repeated for both inputs, outputs, and recurrent layers, so the same network units are dropped at each time step. 
+%The interpretation for this work (character-level language modelling) is to force the model not to rely on single characters for its task.
+%Finally, they found that the optimal dropout probabilities are between 0.3 and 0.5.
+
+\subsection{Gradient Descent Variants}
+As previously introduced, gradient descent is a an optimization algorithm used to find the parameters that minimize an objective function. There are three variants of the gradient descent: batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. The variants differ in how much data is used to compute the gradient of the objective function. 
+
+The first variant computes the gradient of the cost function with respect to the parameters($\theta$) for the entire dataset as in \ref{eq:batchgd}.
+
+\begin{equation} \label{eq:batchgd}
+\theta=\theta-\eta * \Delta_\theta * J(\theta)
+\end{equation}
+
+The second variant computes a parameter update for each training example $x_i$ and target $y_i$ \ref{eq:sgd}.
+\begin{equation} \label{eq:sgd}
+\theta=\theta-\eta * \Delta_\theta; * J(\theta;x_i;y_i)
+\end{equation}
+
+Where $\eta$ is the learning rate.
+
+The problem with the batch gradient descent is that it can be very slow and it does not allow to update the model with new examples on-the-fly. The stochastic gradient descent solves this problem and is faster than the batch gradient descent, but it performs updates with high variance causing the objective function to fluctuate heavily.  
+
+Finally, the mini-batch gradient descent performs an update for every mini-batch of $n$ training examples as in \ref{eq:mbgd} \begin{equation} \label{eq:mbgd}
+\theta=\theta-\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
+\end{equation}
+
+In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allows the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work\cite{ruder2016overview}. 
+
+\subsection{Gradient Descent Optimization Algorithms}
+%To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find the parameters that minimize an objective function. Mini-batch gradient descent is stochastic since the objective function is composed of a sum of subfunctions evaluated at different subsamples of data. Another source of noise may also come from dropout regularization \cite{kingma2014adam}. 
+Choosing the proper learning rate $\eta$ is a difficult and important task. Using the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. Another challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For this cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
+%fuente:http://sebastianruder.com/optimizing-gradient-descent/
+
+The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus speed up SGD. The last ones, adapt the updates to each individual parameter to perform larger updates for infrequent and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.
+
+%Momentum \cite{qian1999momentum} is a method that helps accelerate gradient descent in the relevant direction and dampens oscillations by taking in account a fraction $\phi$ of the update vector of the past time step to the current update vector:
+
+%\begin{equation}
+%\theta=\theta-(\nu_t=\phi \nu_{t-1} + \eta \Delta_\theta J(\theta))
+%\end{equation}
+%Where $\phi$ is the momentum term usually set to 0.9.
+
+%The momentum term increases for dimensions whose gradients point in the same directions and reduces updates for dimensions whose gradients change directions. As a result, we gain faster convergence and reduced oscillation.
+%chance y quitar esto
+
+%Nesterov accelerated gradient \cite{nesterov1983method} not only uses the momentum term $\phi \nu_{t-1}$  to move the parameters $\theta$; but it also computes $\theta - \phi \nu_{t-1}$ to give an approximation of the next position of the parameters.  
+%\begin{equation}
+%\theta=\theta-(\nu_t = \phi \nu_{t-1} + \eta \Delta_\theta J(\theta - \phi \nu_{t-1})
+%\end{equation}
+  
+The name Adam comes from adaptive moment estimation. It combines the advantages of AdaGrad and RMSProp \cite{kingma2014adam}. As RMSprop, ADAM  store an exponentially decaying average of past squared gradients $\nu_t$: %In addition, Adam keeps an exponentially decaying average of past gradients $m_t$ similar to momentum:
+\begin{equation}
+m_t=\beta_1 m_{t-1} + (1-\beta_1)g_t
+\end{equation}
+
+\begin{equation}
+\nu_t=\beta_2 \nu_{t-1} + (1-\beta_2)g^2_t
+\end{equation}
+
+Where $m$ and $\nu$ are estimates of the first moment and the second moment of the gradients respectively, meaning the mean and the uncentered variance. Both are initialized as vectors of zeros and, thus, they are biased towards zero. Then, they are corrected as follows:
+\begin{equation}
+\hat{m_t}=\frac{m_t}{1-\beta^t_1}
+\end{equation}
+
+\begin{equation}
+\hat{\nu_t}=\frac{\nu_t}{1-\beta^t_2}
+\end{equation}
+
+Finally, the next equation is computed to update the parameters:
+\begin{equation}
+\theta_{t+1}=\theta_t-\frac{\eta}{\sqrt[2]{\hat{\nu_t}} + \epsilon} \hat{m_t} 
+\end{equation}
+
+Where $\epsilon$ is a smoothing term to avoid the zero division. The default proposed values are $10^-8$ for $\epsilon$, 0.9 for $\beta_1$ and 0.999 for $\beta_2$.
+%falta fuente
+
+%Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually becomes infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. 
+
+It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and AdaGrad, and therefore it is the one chosen for this work.
+%fuente!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+\section{Time Series}
+escribir de Time Series !!!!!!!!!!!!!!!!!!!!!!!!!
