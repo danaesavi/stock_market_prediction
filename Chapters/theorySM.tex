@@ -78,7 +78,41 @@ How much the weights are changed is controlled by the learning rate $\nu$. If it
 %The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
 
 \section{Support Vector Machines}
-Support vector machines can be seen as an optimization of the neural networks. 
+Support vector machine (SVM) can be seen as an optimization of the neural networks. It uses the maximum margin hyperplane which gives the maximum separation between the decision classes. Meaning. SVM uses a linear model to implement nonlinear class boundaries through some nonlinear mapping the input vectors x into a high-dimensional feature space. Then, a linear model constructed in the new space can represent a nonlinear decision boundary in the original space. Finally, in the new space, an optimal separating hyperplane is constructed \cite{kim2003financial}. 
+
+The training examples that are closest to the maximum margin hyperplane are called support vectors and are the only ones used to define the binary class boundaries. Unlike neural networks, the only parameter to tune is the upper bound C for the non-separable cases in linear SVM \cite{drucker1999support}. Also, overfitting is unlikely to occur since it is usually caused by too much flexibility in the decision boundary and, in this case, the maximum hyperplane is relatively stable and gives little flexibility \cite{zhang1998forecasting}
+
+The classifying rule is as follows:
+
+\centerline{$\overleftarrow{w} * \overleftarrow{x_i} > 0  \rightarrow  positive $ \\}
+\centerline{$\overleftarrow{w} * \overleftarrow{x_i} < 0  \rightarrow  negative $\\} 
+
+The borders are calculated considering: \\
+\centerline{ $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1>=0$ \\}
+where $y$ identifies the class $[1,-1]$\\
+
+Therefore, the support vectors are defined as follows: \\
+\centerline{$\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1=$\\}
+
+To maximize the distance between the borders of the classes for linearly separable classes we need to solve the next problem:
+
+\centerline{$min \frac{1}{2}||\overleftarrow{w}||^2$\\}
+\centerline{subject to $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1>=0$ \\}
+
+In case the classes are non linear, a looseness variable $C$ should be added: \\
+\centerline{$min \frac{1}{2}||\overleftarrow{w}||^2+C\sum_{i}\xi_i$\\}
+\centerline{subject to $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1+\xi_i>=0$\\}
+\centerline{$\xi_i>=0$}
+
+Finally, the kernel is a function that transforms the data to a higher dimension. It substitues the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel( \ref{eq:polyKernel}) and the gaussian (\ref{eq:gaussKernel}) kernel.
+\begin{equation} \label{eq:polyKernel}
+K(X,X')=(X.X'+c)^degree
+\end{equation}
+
+\begin{equation} \label{eq:gaussKernel}
+K(X,X')=e^(-\gamma ||X-X'||^2)
+\end{equation}
+
 %basar en apuntes de minería y buscar documentación
 \section{Deep Learning}
 As explained before, learning in the context of artificial neural networks refers to finding the adequate weights that make the network exhibit the desired behavior. Depending on the problem and how the neurons are connected, such behavior may require long causal chains of computational stages. Each stage transforms the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages \cite{schmidhuber2015deep}. This work will focus on recurrent neural networks, a subfield of deep learning in artificial neural networks (NNs).
@@ -147,7 +181,7 @@ If the  weight matrix is smaller than 1, the gradient signal can get so small th
 
 \subsubsection*{The vanishing gradients problem}
 
-The vanshing gradients problem makes it difficult to learn to store information. Having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions. \cite{graves2013generating}
+The vanishing gradients problem makes it difficult to learn to store information. Having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions. \cite{graves2013generating}
 
 %This amnesia makes them prone to instability when generating sequences. The main problem is that if the network's predictions  are only based on the last few inputs, and these inputs were themselves predicted by the network, it has little opportunity to recover from past mistakes.
 
@@ -277,6 +311,4 @@ Where $\epsilon$ is a smoothing term to avoid the zero division. The default pro
 
 It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and AdaGrad, and therefore it is the one chosen for this work.
 %fuente!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-\section{Time Series}
-escribir de Time Series !!!!!!!!!!!!!!!!!!!!!!!!!
+-
