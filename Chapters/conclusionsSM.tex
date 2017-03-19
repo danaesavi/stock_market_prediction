@@ -1,3 +1,27 @@
 \chapter{Conclusions}
 \label{ch:conclusions}
 
+This study presented a novel work of stock market price prediction. It involved modeling time series with machine learning techniques. We chose machine learniing techniques over traditional statistics because the first ones capture the random movements and the variability better than the second ones. 
+
+We modeled the closure stock market price of WALMEX, the largest Walmart's division outside the U.S.The three models: ANN, SVM, and RNN took in account three real prices and returned the prediction of the next price.
+
+First, we described the data, then we normalized, built the dataset, and fianally, we split it into a train and test subsets. Since we needed to respect the order of the values in the dataset, we used time series cross-validation to find the parameters of each model.
+
+The minimum MSE was found with 3 hidden neurons for the ANN, a C equals 3 for the SVM, and 10 LSTMs for the RNN. The ANN was trained with 300 epochs, while the RNN just required 10 since it overfits very quickly. The SVM's kernel was sigmoid. It was chosen as from the data description analysis. The data histogram in Figure \ref{fig:walmexFreq} shows an almost normal distribution of the prices. 
+
+Two criterias were used to compare the peformance of each model: how well the model could predict the exact next price, and how well the model could tell if the price would go up or down with respect to the last one. The RNN was better than the SVM and the ANN in both cases. Hence, the best performance was found in the RNN.
+
+When comparing the ANN and the RNN between each other, we found that the mean square error of the RNN is lower and has less variance than the ANN's results. The MSE of the RNN after running 30 time the model with different random train and test subsets was 0.61 lower than the ANN's MSE. The variance was also lower by 0.8 than the ANN's.
+
+The SVM's performance was between the ANN's and the RNN's. It had a higher accuracy (44\%), just 1\% lower than the RNN, but a higher MSE (3.39) than the ANN (2.91) and the RNN (1.66). We also used the precision, recall, and F1 score to compare the models. 
+
+The recall metric showed that the SVM was the best model to predict the downs of the price, while the RNN was the best to predict the ups. The F1 score reassured that the best performance was found in the RNN.
+
+\section{Future Work}
+
+As stated in the scope of this work, the models are trained to predict the next price in the sequence. It would be interesting to have a model able to predict the next n prices rather than just the next one.
+
+It would also be worth it to test the models with other company's stock market prices to compare the performance between each other. Another area of interest is to work with hybrid models. As we analayzed, each model is better than the others in different aspects. The idea is to train the three models and define a weighted average for the prediction depending on the performance of each model and the interests of the user.
+
+Stock market price prediction is a difficult problem becaue all the random movement of the price and all the variables invloved. The incorporation f news, reviews, and expectations should improve the performance of the model as well. 
+
