@@ -32,9 +32,14 @@ McCulloch and Pitts modeled an artificial neuron as a mathematical model in orde
 \includegraphics[width=10cm,height=5cm]{model_of_neuron.jpg}
 \caption{McCulloch and Pitt's Neuron Model}
 \label{fig:neuron}
+\begin{minipage}{12cm}
+    \footnotesize
+    \center
+    \emph \\ Taken from \cite{marsland2015machine}
+    \end{minipage}
 \end{figure}
 
-The signals are added and if the sum is greater than a threshold $\theta$ , it is activated. The mathematical expression is as follows:\\
+The signals are added and if the sum is greater than a threshold $\theta$, it is activated. The mathematical expression is as follows:\\
 \begin{equation} \label{eq:neuron}
 h=\sum_{i=1}^{m} w_i * x_i + b
 \end{equation}\ref{eq:neuron}
@@ -59,18 +64,20 @@ SGD updates the weights to the direction of the gradient. The error E in equatio
 \label{eq:error}
 E=(t_j - y_i)
 \end{equation}
+
 \begin{equation}
 \label{eq:weight}
-w_ij \leftarrow w_ij+\nu E * x_i
-\end{equation} where $0>=\nu<=1$ \\
-\ref{eq:weight}
+w_{ij} \leftarrow w_{ij}+\nu E * x_i
+\end{equation} 
+\centerline{where $0>=\nu<=1$ \\}
+
 \begin{figure}
-\label{fig:nn}
 \center
 \includegraphics[width=10cm,height=5cm]{NN.jpg}
 \caption{Neural Network}
+\label{fig:nn}
 \end{figure}
-\\
+
 Since the function is concave in W, the network is expected to get better answers until eventually its performance stops improving.
 
 How much the weights are changed is controlled by the learning rate $\nu$. If it is too big, the weights will change a lot  making the network unstable so that it never settles down. On the other hand, if $\nu$ is too short it will be stable and resistant to errors and inaccuracies in the data, but it will take too long to learn. 
@@ -115,7 +122,9 @@ K(X,X')=e^(-\gamma ||X-X'||^2)
 
 %basar en apuntes de minería y buscar documentación
 \section{Deep Learning}
-As explained before, learning in the context of artificial neural networks refers to finding the adequate weights that make the network exhibit the desired behavior. Depending on the problem and how the neurons are connected, such behavior may require long causal chains of computational stages. Each stage transforms the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages \cite{schmidhuber2015deep}. This work will focus on recurrent neural networks, a subfield of deep learning in artificial neural networks (NNs).
+As explained before, learning in the context of artificial neural networks refers to finding the adequate weights that make the network exhibit the desired behavior. Depending on the problem and how the neurons are connected, such behavior may require long causal chains of computational stages. Each stage transforms the aggregate activation of the network.
+
+Deep Learning is about accurately assigning credit across many such stages \cite{schmidhuber2015deep}. This work will focus on recurrent neural networks, a subfield of deep learning in artificial neural networks (NNs).
 %Another way of understanding deep learning is by studying neural networks as a representation learning method. This kind of methods allow a machine to be fed with raw data and to automatically discover the representations needed for detection or classification. Hence, deep learning methods are representation learning methods with multiple levels of representation. With the composition of enough transformations, very complex functions can be learned \cite{lecun2015deep}. 
 
 \subsection{Recurrent Neural Networks}
@@ -123,10 +132,15 @@ As explained before, learning in the context of artificial neural networks refer
 A deep recurrent neural network (RNN) is a deep artificial neural network but with a different structure. In the deep case, connections among hidden units are allowed. Furthermore, these connections are associated with a time delay enabling the model to retain information about the past inputs. In this way, temporal correlations between events that are possibly far away from each other in the data can be discovered \cite{pascanu2013difficulty}.
 
 \begin{figure}
-\label{fig:rnn}
 \center
 \includegraphics[width=3.5cm,height=5cm]{rnn.png}
 \caption{Recurrent Neural Network}
+\label{fig:r_nn}
+\begin{minipage}{12cm}
+    \footnotesize
+    \center
+    \emph \\ Taken from \cite{lecun2015deep}
+    \end{minipage}
 \end{figure}
 For tasks that involve sequential inputs it results good to use RNNs. This is mainly because RNNs process an input sequence one element at a time and maintain in their hidden units a "state vector". This vector implicitly contains information about the history of all the past elements of the sequence.\cite{lecun2015deep} 
 
@@ -159,10 +173,16 @@ BTT applied to RNNs have the constraint of sharing the parameters within each la
 The constraint can be satisfied by adding the gradients for W at each time step. This constraint can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
 
 \begin{figure}
-\label{fig:unfold}
+
 \center
 \includegraphics[width=10cm,height=5cm]{unfold.png}
 \caption{Unfolded Recurrent Neural Network}
+\label{fig:unfold}
+\begin{minipage}{12cm}
+    \footnotesize
+    \center
+    \emph \\ Taken from \cite{lecun2015deep}
+    \end{minipage}
 \end{figure}
 
 %The key insight in BTT is that the calculation of the derivative of the objective with respect to the input of a module can be done by working backwards from the gradient with respect to the output of that module and repeating this process through all the layers or, in this case, through all the time steps \cite{schmidhuber2015deep}.
@@ -193,10 +213,15 @@ Long Short-term Memory (LSTM) is an RNN architecture. The difference is that ins
 LSTMs are better at storing and accessing information than standard RNNs. The cells improve the performance when finding and exploiting long range dependencies in the data. Additionally, the full gradient can be calculated with backpropagation through time as well.\cite{graves2013generating}
 
 \begin{figure}
-\label{fig:lstm}
 \center
 \includegraphics[width=10cm,height=5cm]{gates.PNG}
 \caption{Long Short Term Memory Network}
+\label{fig:lstm}
+\begin{minipage}{12cm}
+    \footnotesize
+    \center
+    \emph \\ Based on \cite{greff2016lstm}
+    \end{minipage}
 \end{figure}
 
 The forget gate $f_t$ decides the content to keep for each time step $t$. It is a sigmoid function that takes in account the $h_{t-1}$ and the present input $x_t$ and returns a number between 0 and 1 where 0 means "forget it" and 1 means "keep it". 
