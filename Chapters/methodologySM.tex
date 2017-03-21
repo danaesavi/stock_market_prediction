@@ -10,9 +10,9 @@ This section presents the experiments for each model. First, we present the para
 The three models were implemented in Anaconda with Python 2.7.12 in a 64 bits latop with 4GB of RAM. The processor of the system is Intel(R) Core(TM) i5-3337U CPU @ 1.80 GHz and the operative system is Windows 10. In order to replicate the experimental results we fixed the seed to 14. 
 \section{Parameter Selection}
 
-Each model required a parameter to be chosen. For the ANN we looked for the number of hidden layers, for the SVM the  parameter to be chosen is the C; and for the RNN we looked for the number of LSTM cells required.
+Each model required a parameter to be chosen. For the ANN we looked for the number of hidden layers, for the SVM the parameter to choose is the C; and for the RNN we looked for the number of LSTM cells required.
 
-Since it is a time series problem, the order of the examples must be respected. To make sure this happens, the parameters were selected using time series cross validation over the training subset. In this k-fold cross validation variant successive training sets are supersets of those that come before them. In all cases, we looked for the parameter that minimized the mean square error (MSE). 
+Since it is a time series problem, the order of the examples must be respected. To make sure this happens, the parameters were selected using time series cross-validation over the training subset. In this k-fold cross-validation variant, successive training sets are supersets of those that come before them. In all cases, we looked for the parameter that minimized the mean square error (MSE). 
 
 For each cross validation the next steps were implemented:
 \begin{enumerate}
@@ -33,7 +33,7 @@ For each cross validation the next steps were implemented:
 
 \subsection{Artificial Neural Network}
 
-The artificial neural model was implemented using Pybrain, a flexible machine learning library for Python. The input layer has three neurons for each real price and the output layer has only one neuron for the prediction of the next price. The minimum MSE after applying cross validation was gotten using three neurons in the hidden layer as shown in  Figure \ref{fig:cvNN}
+The artificial neural model was implemented using Pybrain, a flexible machine learning library for Python. The input layer had three neurons for each real price and the output layer had only one neuron for the prediction of the next price. The minimum MSE after applying cross validation was gotten using three neurons in the hidden layer as shown in  Figure \ref{fig:cvNN}
 
 \begin{figure}[h]
 \centering
@@ -47,7 +47,7 @@ The artificial neural model was implemented using Pybrain, a flexible machine le
 \end{figure}
 
 \subsection{Support Vector Machine}
-The support vector machine was implemented using the scikit-learn library or Python. It provides simple and efficient tools for data mining and data analysis. We used a sigmoid kernel and C=3 which got the minimum MSE as shown in Figure \ref{fig:cvSVM}
+The support vector machine was implemented using the scikit-learn library of Python. It provides simple and efficient tools for data mining and data analysis. We used a sigmoid kernel and C=3 which got the minimum MSE as shown in Figure \ref{fig:cvSVM}
 
 \begin{figure}[h]
 \centering
@@ -63,11 +63,13 @@ The support vector machine was implemented using the scikit-learn library or Pyt
 
 \subsection{Recurrent Neural Network}
 
-The model was implemented in Keras, a high-level neural networks library written in Python. It can run on top of either TensorFlow or Theano and with CPU or GPU. It supports recurrent neural networks, and arbitrary connectivity schemes including multi-input and multi-output training. For this study we used Theano as background.
+The model was implemented in Keras, a high-level neural network library written in Python. It can run on top of either TensorFlow or Theano and with CPU or GPU. It supports recurrent neural networks, and arbitrary connectivity schemes including multi-input and multi-output training. For this study we used Theano as background.
 
-The model has an input, a hidden and an output layer. It has 3 outputs for each real price. The single hidden layer has 10 LSTM units with a drop out of 0.03 for the non-recurrent connections. Finally, we have a full connected layer with one output which refers to the prediction of the price. The network implements the  ADAM SGD optimizer in order to adapt the learning rate dynamically since the data is sparse. 
+The model had an input, a hidden and an output layer. It had 3 outputs for each real price. The single hidden layer had 10 LSTM units with a drop out of 0.03 for the non-recurrent connections. 
 
-As shown in Figure \ref{fig:cvRNN}, the minimum MSE is nor gotten with 10 LSTMs. Nevertheless, with one more LSTM the MSE is higher and then it drops again. Since the difference between the MSE with 10 LSTMs and with 16 LSTMs is just 0.003, we decided to use 10 LSTMs. In addition, using less LSTMs requires less parameters to be calculated by the network.  
+Finally, we had a full connected layer with one output which refers to the prediction of the price. The network implements ADAM SGD optimizer to adapt the learning rate dynamically since the data is sparse. 
+
+As shown in Figure \ref{fig:cvRNN}, the minimum MSE is not obtained with 10 LSTMs. Nevertheless, with one more LSTM the MSE is higher and then it drops again. Since the difference between the MSE with 10 LSTMs and with 16 LSTMs is just 0.003, we decided to use 10 LSTMs. In addition, using less LSTMs requires less parameters to be calculated by the network.  
 
 \begin{figure}[h]
 \centering
@@ -89,18 +91,21 @@ Since we are predicting stock market prices this study is strongly interested in
 \item How precise is the model to capture the up and down movements
 \end{itemize}
 
-For the first criteria we used the MSE to compare each model performance. The second criteria required a new categoric vector for the real test values and for the predicted values of each model in order to express the ups and downs of the prices. This vector mapped a 0 if the new price was lower than the past one and 1 if it was higher. In this way we could compare the models using the accuracy, precision, recall, and F1 scores. Another resource used is the confusion matrix. 
+For the first criteria we used the MSE to compare each model's performance. The second criteria required a new categoric vector for the real test values and for the predicted values of each model in order to express the ups and downs of the prices.
+
+This vector mapped a 0 if the new price was lower than the past one and 1 if it was higher. In this way we could compare the models using the accuracy, precision, recall, and F1 scores. Another resource used is the confusion matrix. 
 
 The metrics as well as the confusion matrix are explained as follows:
 
 \begin{itemize}
 \item \textbf{MSE:} the average of the quadratic differences between the real and the predicted value
-\item \textbf{Accuracy:} The proportion where the predicted values are the same as the real values out of the total of examples
 \begin{equation}
 MSE=\frac{1}{n}\sum_i (Y_{real}-Y_{predicted})^2
 \label{eq:msemet}
 \end{equation}
-\item \textbf{Precision:} the number of true positives divided by the sum of True positives and false positives, meaning, the total number of elements labeled as belonging to the positive class 
+\item \textbf{Accuracy:} the proportion where the predicted values are the same as the real values out of the total of examples
+
+\item \textbf{Precision:} the number of true positives divided by the sum of true positives and false positives, meaning, the total number of elements labeled as belonging to the positive class 
 \begin{equation}
 Precision=\frac{TP}{TP+TN}
 \label{eq:precision}

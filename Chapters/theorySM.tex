@@ -10,7 +10,6 @@
 
 
 \section{Machine Learning}
-
 The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, and physics. 
 Machine learning is about making computers modify or adapt their actions so that these actions get more accurate. Accuracy is measured by how well the chosen actions reflect the correct ones. As there are several ways to achieve this task there are different types of machine learning explained as follows \cite{marsland2015machine}:
 
@@ -44,21 +43,21 @@ The signals are added and if the sum is greater than a threshold $\theta$, it is
 h=\sum_{i=1}^{m} w_i * x_i + b
 \end{equation}\ref{eq:neuron}
 
-Thus the output of the neuron is the sum of the $m$ inputs ($x_i$) multiplied by the weights ($w_i$). Furthermore, units can be given biases by introducing an extra input to each unit which always has a value of 1. The weight on this extra input is called the bias (b) and is equivalent to a threshold of the opposite sign \cite{polk2002cognitive}. 
+Thus, the output of the neuron is the sum of the $m$ inputs ($x_i$) multiplied by the weights ($w_i$). Furthermore, units can be given biases by introducing an extra input to each unit which always has a value of 1. The weight on this extra input is called the bias (b) and is equivalent to a threshold of the opposite sign \cite{polk2002cognitive}. 
 
 
-\section{Neural Networks}
+\section{Artificial Neural Network}
 
 A simple neural network is shown in Figure \ref{fig:nn}. It is formed by input units at the bottom, any number of intermediate or hidden layers, and a layer of output units at the top. Each of the units are  defined as a McCulloch and Pitts neuron. It should be noticed that connections within a layer from a higher to lower layer are forbidden. 
 
 Since everything but the weights is known, learning or training refers to finding a set of weights so that for each input vector, the output vector produced by the network is sufficiently close to the desired output vector \cite{polk2002cognitive}. Thus, learning is translated to an optimization problem.
 
-Gradient descent is an optimization algorithm used to find the parameters  that minimize a cost function. The derivative of the cost function with respect to the parameters is calculated and then equals zero. To calculate the derivative we can use backpropagation that is nothing more than the recursive application of the chain rule.
+Gradient descent is an optimization algorithm used to find the parameters  that minimize a cost function. The derivative of the cost function with respect to the parameters is calculated and then equals zero. To calculate the derivative we can use backpropagation that can be seen as the recursive application of the chain rule.
 %If the function is differentiable with respect to its parameters as in this case, gradient descent is a relatively efficient optimization method. This is because the computation of first-order partial derivatives with respect to all parameters is of the same computational complexity as just evaluating the function \cite{kingma2014adam}. 
 
 In this case, the derivative with respect to the parameters turns out to be the error defined as the difference between the actual and the desired output vectors for every case. Now the problem is that there is not a direct solution for the partial derivatives with respect to the weights equals zero. Therefore, we can not use the gradient descent for this last task but we can use a variant: stochastic gradient descent (SGD).
 %escribir bien lo de igualar a cero
-SGD updates the weights to the direction of the gradient. The error E in equation \ref{eq:error} is multiplied by a parameter called the learning rate $\nu$ and by the input $x_i$. This value is added to the weight ($w_ij$) for each j neuron and input i.
+SGD updates the weights to the direction of the gradient. The error E in equation \ref{eq:error} is multiplied by a parameter called the learning rate $\nu$ and by the input $x_i$. This value is added to the weight ($w_{ij}$) for each j neuron and input i.
 
 \begin{equation}
 \label{eq:error}
@@ -84,8 +83,8 @@ How much the weights are changed is controlled by the learning rate $\nu$. If it
 
 %The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
 
-\section{Support Vector Machines}
-Support vector machine (SVM) can be seen as an optimization of the neural networks. It uses the maximum margin hyperplane which gives the maximum separation between the decision classes. Meaning. SVM uses a linear model to implement nonlinear class boundaries through some nonlinear mapping the input vectors x into a high-dimensional feature space. Then, a linear model constructed in the new space can represent a nonlinear decision boundary in the original space. Finally, in the new space, an optimal separating hyperplane is constructed \cite{kim2003financial}. 
+\section{Support Vector Machine}
+Support vector machine (SVM) can be seen as an optimization of a neural network. It uses the maximum margin hyperplane which gives the maximum separation between the decision classes. Meaning. SVM uses a linear model to implement nonlinear class boundaries mapping the input vectors x into a high-dimensional feature space. Then, a linear model constructed in the new space can represent a nonlinear decision boundary in the original space. Finally, in the new space, an optimal separating hyperplane is constructed \cite{kim2003financial}. 
 
 The training examples that are closest to the maximum margin hyperplane are called support vectors and are the only ones used to define the binary class boundaries. Unlike neural networks, the only parameter to tune is the upper bound C for the non-separable cases in linear SVM \cite{drucker1999support}. Also, overfitting is unlikely to occur since it is usually caused by too much flexibility in the decision boundary and, in this case, the maximum hyperplane is relatively stable and gives little flexibility \cite{zhang1998forecasting}
 
@@ -99,7 +98,7 @@ The borders are calculated considering: \\
 where $y$ identifies the class $[1,-1]$\\
 
 Therefore, the support vectors are defined as follows: \\
-\centerline{$\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1=$\\}
+\centerline{$\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1=0$\\}
 
 To maximize the distance between the borders of the classes for linearly separable classes we need to solve the next problem:
 
@@ -111,13 +110,13 @@ In case the classes are non linear, a looseness variable $C$ should be added: \\
 \centerline{subject to $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1+\xi_i>=0$\\}
 \centerline{$\xi_i>=0$}
 
-Finally, the kernel is a function that transforms the data to a higher dimension. It substitues the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel( \ref{eq:polyKernel}) and the gaussian (\ref{eq:gaussKernel}) kernel.
+Finally, the kernel is a function that transforms the data to a higher dimension. It substitues the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel(eq. \ref{eq:polyKernel}) and the gaussian (eq. \ref{eq:gaussKernel}) kernel.
 \begin{equation} \label{eq:polyKernel}
-K(X,X')=(X.X'+c)^degree
+K(X,X')=(X.X'+c)^{degree}
 \end{equation}
 
 \begin{equation} \label{eq:gaussKernel}
-K(X,X')=e^(-\gamma ||X-X'||^2)
+K(X,X')=e^{(-\gamma ||X-X'||^2)}
 \end{equation}
 
 %basar en apuntes de minería y buscar documentación
@@ -144,7 +143,7 @@ A deep recurrent neural network (RNN) is a deep artificial neural network but wi
 \end{figure}
 For tasks that involve sequential inputs it results good to use RNNs. This is mainly because RNNs process an input sequence one element at a time and maintain in their hidden units a "state vector". This vector implicitly contains information about the history of all the past elements of the sequence.\cite{lecun2015deep} 
 
-Sequential data arises through measurement of time series such as the rainfall measurements on successive days at a particular location,the daily values of a currency exchange rate and, to our interest, the stock market price in a time interval.The order of the prices as well as the relationships between them matter. Thus, to predict which is the most likely price to follow the sequence, it is important to retain this information.
+Sequential data arises through measurement of time series such as the rainfall measurements on successive days at a particular location, the daily values of a currency exchange rate and, to our interest, the stock market price in a time interval. The order of the prices as well as the relationships between them matter. Thus, to predict which is the most likely price to follow the sequence, it is important to retain this information.
 
 % In this case the input data is the set of elements of a sentence or a set of sentences and the desired behaviour is to generate a new sequence that can adequately continue after the original one. Therefore, the target data for each element is the following one. 
 The recurrent neural network receives an input vector $x=[x_1,...,x_T]$ which is passed through weighted connections to N recurrently connected hidden vector sequences $h^n=[h_1^n,...,h_T^n]$ and finally to the output vector sequence $y=[y_1,...,y_T]$ which will be compared to the target value for each observation. To compute the hidden layer activation the following equations are iterated from t=1 to T and from n=2 to N. \cite{graves2013generating}:
@@ -165,12 +164,12 @@ y_t=Y(\sum_{n=1}^{N} W_{h^{n}y} * h^n_t + b_y)
 
 Where $Y$ is the output layer function whose output vectors will need to be compared to the target values so that the network achieves the desired behaviour by minimizing the difference between both values.
 %In Equation \ref{eq:error} the error was defined as this difference. Nevertheless, this definition is not adequate
-The network now can be trained using the gradient descent to learn how the parameters, meaning the $W$ vector, should change to decrease the loss  $L(x)$. Therefore, the partial derivatives of the loss with respect to the weights should be computed. This can be achieved using backpropagation through time (BTT). This process computes the gradients of expressions through recursive application of the chain rule.
+The network now can be trained using the gradient descent to learn how the parameters, meaning the $W$ vector, should change to decrease the loss  $L(x)$. Therefore, the partial derivatives of the loss with respect to the weights should be computed. This can be achieved using backpropagation through time (BTT). The process computes the gradients of expressions through recursive application of the chain rule.
 
 \subsubsection{Backpropagation Through Time}
-BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights\cite{lecun2015deep}. Here, the model is presented as a deep multi-layer where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. 
+BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights \cite{lecun2015deep}. Here, the model is presented as a deep multi-layer where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. 
 
-The constraint can be satisfied by adding the gradients for W at each time step. This constraint can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
+The constraint can be satisfied by adding the gradients for W at each time step. It can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
 
 \begin{figure}
 
@@ -190,9 +189,9 @@ The constraint can be satisfied by adding the gradients for W at each time step.
 %a lo mejor aquí poner lo del -1
 
 \subsubsection{RNNs Training Issues}
-As described before, RNNs are very powerful dynamic systems. Unfortunately training them has proved to be problematic. During the gradient backpropagation phase, the gradient signal can end up being multiplied a large number of times by the weight matrix associated with the connections between the neurons of the recurrent hidden layer. This causes that the backpropagated gradients either grow or shrink at each time step. Thus, the magnitude of weights in the transition matrix may have a strong impact on the learning process.
+As described before, RNNs are very powerful dynamic systems. Unfortunately, training them has proved to be problematic. During the gradient backpropagation phase, the gradient signal can end up being multiplied a large number of times by the weight matrix associated with the connections between the neurons of the recurrent hidden layer. This causes that the backpropagated gradients either grow or shrink at each time step. Thus, the magnitude of weights in the transition matrix may have a strong impact on the learning process.
 
-If the  weight matrix is smaller than 1, the gradient signal can get so small that so over many time steps it can vanish. Conversely, if the eigenvalue of the weight matrix is larger than 1, it can lead to a situation where the gradient signal is so large that it can explode causing learning to diverge. 
+If the  weight matrix is smaller than 1, the gradient signal can get so small that so over many time steps it may vanish. Conversely, if the eigenvalue of the weight matrix is larger than 1, it can lead to a situation where the gradient signal is so large that it can explode causing learning to diverge. 
 
 % The exploding gradients problem refers to the large increase in the norm of the gradient during training caused by the explosion of the long term components. On the other hand, the vanishing gradients problem is presented when long term components go exponentially fast to norm 0 making impossible for the model to learn correlation between temporally distant events \cite{pascanu2013difficulty} which was the main reason for choosing RNNs for this work. 
 
@@ -201,11 +200,11 @@ If the  weight matrix is smaller than 1, the gradient signal can get so small th
 
 \subsubsection*{The vanishing gradients problem}
 
-The vanishing gradients problem makes it difficult to learn to store information. Having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions. \cite{graves2013generating}
+The vanishing gradients problem makes it difficult to learn to store information. Having a longer memory has a establishing effect, because even if the network cannot make sense of its recent history, it can look further back in the past to formulate its predictions \cite{graves2013generating}.
 
 %This amnesia makes them prone to instability when generating sequences. The main problem is that if the network's predictions  are only based on the last few inputs, and these inputs were themselves predicted by the network, it has little opportunity to recover from past mistakes.
 
-A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow it to easily “memorize” information for an extended number of time steps \cite{zaremba2014recurrent}.
+A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow to easily “memorize” information for an extended number of time steps \cite{zaremba2014recurrent}.
 
 \subsubsection{Long Short-Term Memory Networks}
 Long Short-term Memory (LSTM) is an RNN architecture. The difference is that instead of using a sigmoid function as hidden layer function, LSTMs use memory cells to store information. The new architecture has three gates and a memory cell. The gates are for input, forget, and output functions. The memory cell has a connection to itself at the next time step with a weight of one, meaning it copies its own real-valued state and accumulates the external signal \cite{lecun2015deep}. Thus, it can decide to overwrite the memory cell, retrieve it, or keep it for the next time step\cite{zaremba2014recurrent}. 
@@ -241,7 +240,7 @@ C'_t=tanh(W_C*(h_{t-1},x_t)+b_C)
 C_t=f_t*C_{t-1}+i_t*C'_t
 \end{equation}
 
-Finally, the output function decides which parts of the memory cell to return with another sigmoid function (Eq. \ref{eq:output}), and lastly the $h_t$ is calculated (Eq. \ref{eq:hidden}) with the output function and a tanh function of the memory cell to push the values into the interval [-1,1].
+Finally, the output function decides which parts of the memory cell to return with another sigmoid function (Eq. \ref{eq:output}). Lastly the $h_t$ is calculated (Eq. \ref{eq:hidden}) with the output function and a tanh function of the memory cell to push the values into the interval [-1,1].
 
 \begin{equation} \label{eq:output}
 o_t=\sigma(W_o*(h_{t-1},x_t)+b_o)
@@ -263,7 +262,7 @@ Nevertheless, in \cite{gal2015theoretically} they develop a technique to effecti
 \subsection{Gradient Descent Variants}
 As previously introduced, gradient descent is a an optimization algorithm used to find the parameters that minimize an objective function. There are three variants of the gradient descent: batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. The variants differ in how much data is used to compute the gradient of the objective function. 
 
-The first variant computes the gradient of the cost function with respect to the parameters($\theta$) for the entire dataset as in \ref{eq:batchgd}.
+The first variant computes the gradient of the cost function with respect to the parameters ($\theta$) for the entire dataset as in \ref{eq:batchgd}.
 
 \begin{equation} \label{eq:batchgd}
 \theta=\theta-\eta * \Delta_\theta * J(\theta)
@@ -278,18 +277,18 @@ Where $\eta$ is the learning rate.
 
 The problem with the batch gradient descent is that it can be very slow and it does not allow to update the model with new examples on-the-fly. The stochastic gradient descent solves this problem and is faster than the batch gradient descent, but it performs updates with high variance causing the objective function to fluctuate heavily.  
 
-Finally, the mini-batch gradient descent performs an update for every mini-batch of $n$ training examples as in \ref{eq:mbgd} \begin{equation} \label{eq:mbgd}
+Finally, the mini-batch gradient descent performs an update for every mini-batch of $n$ training examples as in equation \ref{eq:mbgd} \begin{equation} \label{eq:mbgd}
 \theta=\theta-\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
 \end{equation}
 
-In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allows the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work\cite{ruder2016overview}. 
+In this way, the mini-batch gradient descent reduces the variance of the updates, is faster than the first variant and allows the model to update with examples on-the- fly. Therefore, this third option is the chosen one for this work \cite{ruder2016overview}. 
 
 \subsection{Gradient Descent Optimization Algorithms}
 %To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find the parameters that minimize an objective function. Mini-batch gradient descent is stochastic since the objective function is composed of a sum of subfunctions evaluated at different subsamples of data. Another source of noise may also come from dropout regularization \cite{kingma2014adam}. 
 Choosing the proper learning rate $\eta$ is a difficult and important task. Using the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. Another challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For this cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
 %fuente:http://sebastianruder.com/optimizing-gradient-descent/
 
-The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus speed up SGD. The last ones, adapt the updates to each individual parameter to perform larger updates for infrequent and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.
+The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus, speed up SGD. The last ones adapt the updates to each individual parameter to perform larger updates for infrequent parameters and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.
 
 %Momentum \cite{qian1999momentum} is a method that helps accelerate gradient descent in the relevant direction and dampens oscillations by taking in account a fraction $\phi$ of the update vector of the past time step to the current update vector:
 
@@ -306,7 +305,7 @@ The main algorithms used to avoid those challenges in deep learning applications
 %\theta=\theta-(\nu_t = \phi \nu_{t-1} + \eta \Delta_\theta J(\theta - \phi \nu_{t-1})
 %\end{equation}
   
-The name Adam comes from adaptive moment estimation. It combines the advantages of AdaGrad and RMSProp \cite{kingma2014adam}. As RMSprop, ADAM  store an exponentially decaying average of past squared gradients $\nu_t$: %In addition, Adam keeps an exponentially decaying average of past gradients $m_t$ similar to momentum:
+The name Adam comes from adaptive moment estimation. It combines the advantages of AdaGrad and RMSProp \cite{kingma2014adam}. As RMSprop, ADAM  stores an exponentially decaying average of past squared gradients $\nu_t$: %In addition, Adam keeps an exponentially decaying average of past gradients $m_t$ similar to momentum:
 \begin{equation}
 m_t=\beta_1 m_{t-1} + (1-\beta_1)g_t
 \end{equation}
@@ -334,6 +333,6 @@ Where $\epsilon$ is a smoothing term to avoid the zero division. The default pro
 
 %Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually becomes infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. 
 
-It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and AdaGrad, and therefore it is the one chosen for this work.
+It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and AdaGrad. Therefore it is the one chosen for this work.
 %fuente!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -
