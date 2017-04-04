@@ -4,6 +4,7 @@
 \section{Accuracy and MSE}
 In this chapter the results for each model and each experiment are shown. We compared the models using the two criteria explained in the previous chapter. The RNN was trained for just 10 epochs to avoid overfitting as it quickly reached a very low in sample error smaller than 0.01. On the other hand, the ANN was trained for 300 epochs in order to reach approximately the same in sample error as the RNN. 
 
+
 The MSE and the accuracy scores are shown in Table \ref{table:accmse}. The best performance is where the MSE is the lowest and the accuracy is the highest. It can be noticed in Figure \ref{fig:accmse} that the RNN had the best performance in both cases. The support vector machine got a higher accuracy than the ANN but the last one had a lower MSE.
 
 In this case, the accuracy is measuring the second comparison criteria, meaning, how good is the model to catch the ups and downs of the stock market price. The best models are the RNN and the SVM. On the other hand, the RNN and the ANN are better in predicting the price. Nevertheless, there is a difference of more than 1 point between the MSE of the two models.  
@@ -28,8 +29,8 @@ In this case, the accuracy is measuring the second comparison criteria, meaning,
 \begin{figure}
 \label{fig:accmse}
 \center
-\includegraphics[width=8.5cm,height=4.5cm]{Figures/accmse.JPG}
-\caption{MSE vs. Accuracy of each Model}
+\includegraphics[width=13.5cm,height=8.5cm]{Figures/accmseBar.JPG}
+\caption{MSE and Accuracy of each Model}
 \end{figure}
 
 
@@ -39,16 +40,16 @@ The confusion matrix, precision, and F1 score correspond to the second compariso
 
 The values in the left to right diagonal of the confusion matrix, are the ones that the model predicted correctly. Conversely, the values out of this diagonal are the ones where the model got the prediction wrong.
 
-As showed in \ref{fig:resultsRNN}, the most of the RNN mistakes are at the upper right, meaning, the true negative values that correspond to the ups of the price. It can be said that the model moved to the right direction in almost half of the times. Although it may seem as a bad performance, the mean of the differences between the actual price and the previous one in the test subset is only 0.5 points. 
+As shown in \ref{fig:resultsRNN}, the most of the RNN mistakes are at the upper right, meaning, the true negative values that correspond to the ups of the price. It can be said that the model moved to the right direction in almost half of the times. Although it may seem as a bad performance, the mean of the differences between the actual price and the previous one in the test subset is only 0.5 points. 
 
 On the other hand, the majority of the mistakes of the SVM and the ANN models were at the false positive corner. This case is when the price went down with respect to the previous one and the model moved up. The ANN performed better in this case, but the SVM outperformed the ANN when the price went up.
 
 %resultados RNN
 \begin{figure}
 \center
-\subfloat[RNN Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmRNN.JPG}} 
-\subfloat[RNN Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmnRNN.JPG}}\\
-\subfloat[RNN Classification Report]{\includegraphics[width=8.5cm,height=3.5cm]{Figures/reportRNN.JPG}}
+\subfloat[RNN Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmRNN.JPG}} 
+\subfloat[RNN Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmnRNN.JPG}}\\
+\subfloat[RNN Classification Report]{\includegraphics[width=10.5cm,height=5.5cm]{Figures/reportRNN.JPG}}
 \caption{RNN Results}
 \label{fig:resultsRNN}
 \end{figure}
@@ -56,9 +57,9 @@ On the other hand, the majority of the mistakes of the SVM and the ANN models we
 %resultados SVM
 \begin{figure}
 \center
-\subfloat[SVM Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmSVM.JPG}} 
-\subfloat[SVM Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmnSVM.JPG}}\\
-\subfloat[SVM Classification Report]{\includegraphics[width=8.5cm,height=3.5cm]{Figures/reportSVM.JPG}}
+\subfloat[SVM Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmSVM.JPG}} 
+\subfloat[SVM Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmnSVM.JPG}}\\
+\subfloat[SVM Classification Report]{\includegraphics[width=10.5cm,height=5.5cm]{Figures/reportSVM.JPG}}
 \caption{SVM Results}
 \label{fig:resultsSVM}
 \end{figure}
@@ -66,9 +67,9 @@ On the other hand, the majority of the mistakes of the SVM and the ANN models we
 %resultados NN
 \begin{figure}
 \center
-\subfloat[NN Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmNN.JPG}} 
-\subfloat[NN Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/cmnNN.JPG}}\\
-\subfloat[NN Classification Report]{\includegraphics[width=6.5cm,height=3.5cm]{Figures/reportNN.JPG}}
+\subfloat[NN Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmNN.JPG}} 
+\subfloat[NN Normalized Confusion Matrix]{\includegraphics[width=6.5cm,height=5.5cm]{Figures/cmnNN.JPG}}\\
+\subfloat[NN Classification Report]{\includegraphics[width=10.5cm,height=5.5cm]{Figures/reportNN.JPG}}
 \caption{NN Results}
 \label{fig:resultsNN}
 \end{figure}
@@ -76,10 +77,10 @@ On the other hand, the majority of the mistakes of the SVM and the ANN models we
 %comparison
 \begin{figure}
 \center
-\subfloat[Precision]{\includegraphics[width=5cm,height=3.5cm]{Figures/precision.JPG}} 
-\subfloat[Recall]{\includegraphics[width=5cm,height=3.5cm]{Figures/recall.JPG}}
-\subfloat[F1 Score]{\includegraphics[width=5cm,height=3.5cm]{Figures/F1_Score.JPG}}
-\caption{Comparison between ANN. SVM, and RNN}
+\subfloat[Precision]{\includegraphics[width=8cm,height=5.5cm]{Figures/precision.JPG}} 
+\subfloat[Recall]{\includegraphics[width=8cm,height=5.5cm]{Figures/recall.JPG}} \\
+\subfloat[F1 Score]{\includegraphics[width=8cm,height=5.5cm]{Figures/F1_Score.JPG}}
+\caption{Comparison between ANN, SVM, and RNN}
 \label{fig:comparison}
 \end{figure}
 
@@ -111,7 +112,7 @@ The results show that the RNN outperformed the traditional neural network justif
 \begin{figure}
 \label{fig:errors}
 \center
-\includegraphics[width=12cm,height=4.5cm]{Figures/errors.JPG}
+\includegraphics[width=13cm,height=7cm]{Figures/errors.JPG}
 \caption{ANN MSE vs. RNN MSE}
 \end{figure}
 

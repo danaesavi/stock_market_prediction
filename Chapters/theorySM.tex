@@ -10,7 +10,7 @@
 
 
 \section{Machine Learning}
-The process of learning has long fascinated people from many different disciplines such as psychology, biology, neuroscience, computer science, statistics, mathematics, and physics. 
+The process of learning has long fascinated people from many different disciplines such as psychology, biology, computer science, statistics, mathematics, and physics. 
 Machine learning is about making computers modify or adapt their actions so that these actions get more accurate. Accuracy is measured by how well the chosen actions reflect the correct ones. As there are several ways to achieve this task there are different types of machine learning explained as follows \cite{marsland2015machine}:
 
 \begin{itemize}
@@ -34,7 +34,7 @@ McCulloch and Pitts modeled an artificial neuron as a mathematical model in orde
 \begin{minipage}{12cm}
     \footnotesize
     \center
-    \emph \\ Taken from \cite{marsland2015machine}
+    \emph \\ Taken from \cite{marsland2015machine}\\
     \end{minipage}
 \end{figure}
 
@@ -75,6 +75,11 @@ w_{ij} \leftarrow w_{ij}+\nu E * x_i
 \includegraphics[width=10cm,height=5cm]{NN.jpg}
 \caption{Neural Network}
 \label{fig:nn}
+\begin{minipage}{12cm}
+    \footnotesize
+    \center
+    \emph \\ http://neuralnetworksanddeeplearning.com/chap1.html, by Michael Nielsen \cite{lecun2015deep}
+    \end{minipage}
 \end{figure}
 
 Since the function is concave in W, the network is expected to get better answers until eventually its performance stops improving.
@@ -84,9 +89,9 @@ How much the weights are changed is controlled by the learning rate $\nu$. If it
 %The typical learning rate is between 0.1 and 0.4 \cite{marsland2015machine}.
 
 \section{Support Vector Machine}
-Support vector machine (SVM) can be seen as an optimization of a neural network. It uses the maximum margin hyperplane which gives the maximum separation between the decision classes. Meaning. SVM uses a linear model to implement nonlinear class boundaries mapping the input vectors x into a high-dimensional feature space. Then, a linear model constructed in the new space can represent a nonlinear decision boundary in the original space. Finally, in the new space, an optimal separating hyperplane is constructed \cite{kim2003financial}. 
+Support vector machine (SVM) can be seen as an optimization of a neural network. It uses the maximum margin hyperplane which gives the maximum separation between the decision classes. Meaning, SVM uses a linear model to implement nonlinear class boundaries mapping the input vectors x into a high-dimensional feature space. Then, a linear model constructed in the new space can represent a nonlinear decision boundary in the original space. Finally, in the new space, an optimal separating hyperplane is constructed \cite{kim2003financial}. 
 
-The training examples that are closest to the maximum margin hyperplane are called support vectors and are the only ones used to define the binary class boundaries. Unlike neural networks, the only parameter to tune is the upper bound C for the non-separable cases in linear SVM \cite{drucker1999support}. Also, overfitting is unlikely to occur since it is usually caused by too much flexibility in the decision boundary and, in this case, the maximum hyperplane is relatively stable and gives little flexibility \cite{zhang1998forecasting}
+The training examples that are closest to the maximum margin hyperplane are called support vectors and are the only ones used to define the binary class boundaries. Unlike neural networks, the only two parameters to tune are the kernel and the upper bound C for the non-separable cases in linear SVM \cite{drucker1999support}. Also, overfitting is unlikely to occur since it is usually caused by too much flexibility in the decision boundary and, in this case, the maximum hyperplane is relatively stable and gives little flexibility \cite{zhang1998forecasting}
 
 The classifying rule is as follows:
 
@@ -110,7 +115,7 @@ In case the classes are non linear, a looseness variable $C$ should be added: \\
 \centerline{subject to $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1+\xi_i>=0$\\}
 \centerline{$\xi_i>=0$}
 
-Finally, the kernel is a function that transforms the data to a higher dimension. It substitues the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel(eq. \ref{eq:polyKernel}) and the gaussian (eq. \ref{eq:gaussKernel}) kernel.
+Finally, the kernel is a function that transforms the data to a higher dimension. It substitutes the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel(eq. \ref{eq:polyKernel}) and the gaussian (eq. \ref{eq:gaussKernel}) kernel.
 \begin{equation} \label{eq:polyKernel}
 K(X,X')=(X.X'+c)^{degree}
 \end{equation}

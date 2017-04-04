@@ -37,7 +37,7 @@ The artificial neural model was implemented using Pybrain, a flexible machine le
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm,height=4.5cm]{cvNN.PNG}
+\includegraphics[width=10cm,height=6.5cm]{cvNN.PNG}
 \caption{MSE for each ANN Configuration}
 \begin{minipage}{12cm}
     \footnotesize
@@ -51,7 +51,7 @@ The support vector machine was implemented using the scikit-learn library of Pyt
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm,height=4.5cm]{cvSVM.PNG}
+\includegraphics[width=10cm,height=6.5cm]{cvSVM.PNG}
 \caption{MSE for each SVM Configuration}
 \begin{minipage}{12cm}
     \footnotesize
@@ -73,7 +73,7 @@ As shown in Figure \ref{fig:cvRNN}, the minimum MSE is not obtained with 10 LSTM
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=8cm,height=4.5cm]{cvRNN.PNG}
+\includegraphics[width=10cm,height=6.5cm]{cvRNN.PNG}
 \caption{MSE for each RNN Configuration}
 \begin{minipage}{12cm}
     \footnotesize
@@ -121,12 +121,16 @@ F1 Score=2*\frac{Precision*Recall}{Precision+Recall}
 \label{eq:fiscore}
 \end{equation}
 \item \textbf{Confusion Matrix:} it shows the true positive, true negative, false positive and false negative values. Each column represents the examples in a predicted class while each row represents the examples in an actual class.
-$$
-\begin{matrix}
-TP&FP\\
-FN&TN\\
-\end{matrix}
-$$
+\begin{center}
+$Confusion$ $Matrix$$ = 
+\left[ {\begin{array}{*{20}c}
+   TP & FP  \\
+   FN & TN  \\
+
+ \end{array} } \right]
+$
+\end{center}
+
 \end{itemize}
 
 
