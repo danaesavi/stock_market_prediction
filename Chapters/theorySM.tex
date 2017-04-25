@@ -52,7 +52,7 @@ Since everything but the weights is known, learning or training refers to findin
 Gradient descent is an optimization algorithm used to find the parameters  that minimize a cost function. The derivative of the cost function with respect to the parameters is calculated and then equals zero. To calculate the derivative we can use backpropagation that can be seen as the recursive application of the chain rule.
 %If the function is differentiable with respect to its parameters as in this case, gradient descent is a relatively efficient optimization method. This is because the computation of first-order partial derivatives with respect to all parameters is of the same computational complexity as just evaluating the function \cite{kingma2014adam}. 
 
-In this case, the derivative with respect to the parameters turns out to be the error defined as the difference between the actual and the desired output vectors for every case. Now the problem is that there is not a direct solution for the partial derivatives with respect to the weights equals zero. Therefore, we can not use the gradient descent for this last task but we can use a variant: stochastic gradient descent (SGD).
+In this case, the derivative with respect to the parameters turns out to be the error defined as the difference between the actual and the desired output vectors for every case. Now the problem is that there is not a direct solution for the partial derivatives with respect to the weights equals zero. Therefore, we cannot use the gradient descent for this last task but we can use a variant: stochastic gradient descent (SGD).
 %escribir bien lo de igualar a cero
 SGD updates the weights to the direction of the gradient. The error E in equation \ref{eq:error} is multiplied by a parameter called the learning rate $\nu$ and by the input $x_i$. This value is added to the weight ($w_{ij}$) for each j neuron and input i.
 
@@ -112,7 +112,7 @@ In case the classes are non linear, a looseness variable $C$ should be added: \\
 \centerline{subject to $\overleftarrow{y_i} (\overleftarrow{w}*\overleftarrow{x_i}+b)-1+\xi_i>=0$\\}
 \centerline{$\xi_i>=0$}
 
-Finally, the kernel is a function that transforms the data to a higher dimension. It substitutes the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. the main ones are the polynomial kernel(eq. \ref{eq:polyKernel}) and the gaussian (eq. \ref{eq:gaussKernel}) kernel.
+Finally, the kernel is a function that transforms the data to a higher dimension. It substitutes the dot product between two vectors to build an extension of the observations. There are a few kinds of kernels. The main ones are the polynomial kernel(eq. \ref{eq:polyKernel}) and the gaussian (eq. \ref{eq:gaussKernel}) kernel.
 \begin{equation} \label{eq:polyKernel}
 K(X,X')=(X.X'+c)^{degree}
 \end{equation}
@@ -206,7 +206,7 @@ The vanishing gradients problem makes it difficult to learn to store information
 
 %This amnesia makes them prone to instability when generating sequences. The main problem is that if the network's predictions  are only based on the last few inputs, and these inputs were themselves predicted by the network, it has little opportunity to recover from past mistakes.
 
-A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow to easily “memorize” information for an extended number of time steps \cite{zaremba2014recurrent}.
+A lot of research work has been made to propose solutions to this problem. The main idea is to augment the network with an explicit memory. The first proposal of this kind is the long short-term memory (LSTM) network used in this work. The LSTM has complicated dynamics that allow easily “memorizing” information for an extended number of time steps \cite{zaremba2014recurrent}.
 
 \subsubsection{Long Short-Term Memory Networks}
 Long Short-term Memory (LSTM) is an RNN architecture. The difference is that instead of using a sigmoid function as hidden layer function, LSTMs use memory cells to store information. The new architecture has three gates and a memory cell. The gates are for input, forget, and output functions. The memory cell has a connection to itself at the next time step with a weight of one, meaning it copies its own real-valued state and accumulates the external signal \cite{lecun2015deep}. Thus, it can decide to overwrite the memory cell, retrieve it, or keep it for the next time step\cite{zaremba2014recurrent}. 
@@ -225,7 +225,7 @@ LSTMs are better at storing and accessing information than standard RNNs. The ce
     \end{minipage}
 \end{figure}
 
-The forget gate $f_t$ decides the content to keep for each time step $t$. It is a sigmoid function that takes in account the $h_{t-1}$ and the present input $x_t$ and returns a number between 0 and 1 where 0 means "forget it" and 1 means "keep it". 
+The forget gate $f_t$ decides the content to keep for each time step $t$. It is a sigmoid function that takes into account the $h_{t-1}$ and the present input $x_t$ and returns a number between 0 and 1 where 0 means "forget it" and 1 means "keep it". 
 
 The next step is to calculate the input gate to decide which values to update using a sigmoid function (Eq. \ref{eq:input}). Then, the new candidates are computed by a tanh function (Eq. \ref{eq:candidate}), and the memory cell update is done by combining the previous functions as explained in Eq. \ref{eq:update}.
 
@@ -262,7 +262,7 @@ Nevertheless, in \cite{gal2015theoretically} they develop a technique to effecti
 %Finally, they found that the optimal dropout probabilities are between 0.3 and 0.5.
 
 \subsection{Gradient Descent Variants}
-As previously introduced, gradient descent is a an optimization algorithm used to find the parameters that minimize an objective function. There are three variants of the gradient descent: batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. The variants differ in how much data is used to compute the gradient of the objective function. 
+As previously introduced, gradient descent is an optimization algorithm used to find the parameters that minimize an objective function. There are three variants of the gradient descent: batch gradient descent, stochastic gradient descent, and mini-batch gradient descent. The variants differ in how much data is used to compute the gradient of the objective function. 
 
 The first variant computes the gradient of the cost function with respect to the parameters ($\theta$) for the entire dataset as in \ref{eq:batchgd}.
 
@@ -330,10 +330,10 @@ Finally, the next equation is computed to update the parameters:
 \theta_{t+1}=\theta_t-\frac{\eta}{\sqrt[2]{\hat{\nu_t}} + \epsilon} \hat{m_t} 
 \end{equation}
 
-Where $\epsilon$ is a smoothing term to avoid the zero division. The default proposed values are $10^-8$ for $\epsilon$, 0.9 for $\beta_1$ and 0.999 for $\beta_2$.
+Where $\epsilon$ is a smoothing term to avoid the zero division. The default proposed values are $10^{-8}$ for $\epsilon$, 0.9 for $\beta_1$ and 0.999 for $\beta_2$.
 %falta fuente
 
-%Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually becomes infinitesimally small, so the algorithm can not acquire additional knowledge\cite{ruder2016overview}. 
+%Adam is better than Adagrad because it resolves the main disadvantage of it that is its accumulation of the squared gradients in the denominator that divides the learning rate\cite{duchi2011adaptive}. Since every added term is positive, the accumulated sum keeps growing during training causing the learning rate to shrink and eventually becomes infinitesimally small, so the algorithm cannot acquire additional knowledge\cite{ruder2016overview}. 
 
 It has been empirically shown that Adam works well in practice and better than other adaptive-learning algorithms including the RMSProp and AdaGrad. Therefore it is the one chosen for this work.
 %fuente!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

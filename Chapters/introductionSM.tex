@@ -5,13 +5,13 @@
 that each small piece of her fabric reveals the organization of
 the entire tapestry."
 \end{chapterquote}
-Forecasting is of great interest in different areas of scientific, industrial, and commercial activities. It involves working with time series in a lot cases. Time series are a collection of observations made sequentially through time \cite{chatfield2000time}. For example, the temperature in a specific region, the sales of a product in a store, and the electricity consumption in a fixed time interval.
+Forecasting is of great interest in different areas of scientific, industrial, and commercial activities. It involves working with time series in a lot of cases. Time series are a collection of observations made sequentially through time \cite{chatfield2000time}. For example, the temperature in a specific region, the sales of a product in a store, and the electricity consumption in a fixed time interval.
 
 Forecasting stock prices has been regarded as one of the most challenging applications of modern time series forecasting \cite{pai2005hybrid}. It involves a lot of uncertainties since its nature is essentially dynamic, non-linear, complicated, nonparametric, and chaotic. More important, financial forecasting is of great interest for investors since it helps to decide to invest in a stock or not as well as to sell it or not in order to get profits and avoid losing money.
 
 The first attempt to describe a formula which expresses the likelihood of a market fluctuation was made by Louis Bachelier around one century ago. He was a young French mathematician convinced that the financial markets were a rich source of data for mathematicians and students of probability. 
 
-Two other statisticians paid attention to stock market forecasting on the early 1900's. On 1934, Working found that although price levels do not follow a random pattern, price changes tend to be “largely random” \cite{bernstein1993capital}. Nineteen years later Kendall, confirmed Working's finding at his paper “The Analysis of Economic Time Series”. He declared that “the pattern of events in the price series was much less systematic than is generally believed” \cite{bernstein1993capital}. 
+Two other statisticians paid attention to stock market forecasting on the early 1900's. On 1934,  Holbrook Working found that although price levels do not follow a random pattern, price changes tend to be “largely random” \cite{bernstein1993capital}. Nineteen years later Kendall, confirmed Working's finding at his paper “The Analysis of Economic Time Series”. He declared that “the pattern of events in the price series was much less systematic than is generally believed” \cite{bernstein1993capital}. 
 
 Although it may seem impossible to predict stock prices because of its seemingly random behavior, technical analysts believe that most information about the stocks is reflected in recent prices. Therefore, if trends in the movements are observed, then prices can be easily predicted \cite{patel2015predicting}. There are two types of analysis which usually investors perform before investing in a stock: fundamental analysis and technical analysis.
 
@@ -28,9 +28,9 @@ On the other hand, ANN is a very powerful machine learning model. However, it re
 RNNs do not make the stationary assumption and do not assume independence among the training and test examples. As stated before, they retain information about past inputs. This is why RNNs are widely used for time series applications, handwriting recognition \cite{graves2009offline}, speech recognition \cite{graves2013generating}, scene labeling \cite{pinheiro2014recurrent}, and forecasting stock markets \cite{hsieh2011forecasting}. 
 
 \section{Objectives}
-Design and implement a time series model for stock market price prediction using a recurrent neural network.
+To design and implement a time series model for stock market price prediction using a recurrent neural network.
 
-Compare the performance of the recurrent neural network model with two other predictive machine learning models, specifically, a feed forward artificial neural network model and a support vector machine model.
+To compare the performance of the recurrent neural network model with two other predictive machine learning models, specifically, a feed forward artificial neural network model and a support vector machine model.
 
 \section{Related Work}
 
@@ -38,7 +38,7 @@ A lot of research has been done around financial forecasting. Studies can be div
 
 The first type includes the moving average, exponential smoothing, and the  autoregressive integrated moving average (ARIMA) models. These kind of models are linear in their predictions of the future values. They analyze historic data and attempt to approximate future values of a time series as a linear combination of these historic data \cite{shah2014performance}. 
 
-On the other hand, artificial Neural Networks (ANN) and Support Vector Regression (SVR) are two machine learning algorithms widely used for predicting stock price values \cite{patel2015predicting}. Machine Learning uses a set of samples to generate an approximation of the underling function that generated the data \cite{shah2014performance}.
+On the other hand, artificial Neural Networks (ANN) and Support Vector Regression (SVR) are two machine learning algorithms widely used for predicting stock price values \cite{patel2015predicting}. Machine Learning uses a set of samples to generate an approximation of the underlying function that generated the data \cite{shah2014performance}.
 
 In \cite{shah2014performance} they compared the performance of multilayer feed-forward neural network and the Elman neural network as representative of recurrent neural network for stock prediction. They found the neural network  better than Elman recurrent network and suggested to only use Elman model for historical data and research purposes. On the other hand, in \cite{kim2003financial} a support vector machine model was applied to predict the stock price index. Their experimental results showed that SVM provides a promising alternative to stock market prediction as it outperformed back-propagation neural network .
 
@@ -46,12 +46,12 @@ Researchers have also tried hybrid models, meaning a combination of two or more 
 
 Another hybrid model is presented in \cite{rather2015recurrent}. Its model was constituted of two linear models,  ARIMA and exponential smoothing model and a non-linear model, recurrent neural network. Their results confirm the accuracy of the prediction performance of recurrent neural network compared to linear models.
 
-This work compares the performance of two machine learning models: artificial neural network (ANN), support vector machine (SVM),  and a deep learning model: recurrent neural network (RNN) with long short term memory networks (LSTM). ANN and SVM have been widely used for stock market forecasting and RNN with LSTM is a good option for problems where data is non-linear  as in this case, and where the patterns are difficult to be captured by traditional models.
+This work compares the performance of three machine learning models: artificial neural network (ANN), support vector machine (SVM), and a deep learning model: recurrent neural network (RNN) with long short term memory networks (LSTM). ANN and SVM have been widely used for stock market forecasting and RNN with LSTM is a good option for problems where data is non-linear  as in this case, and where the patterns are difficult to be captured by traditional models.
 
 \section{Scope}
 In this study a novel stock market price prediction model is presented. This approach does not seek to get a number of next predictions but just the next one. Meaning, it requires a number $n$ of real past predictions and determines the $n+1$ price in the sequence. 
 
-Another limitation is that just machine learning models were taken in account. Traditional models such as ARIMA are not compared. Finally, stock market’s movements are affected by many macro-economical factors such as political events, general economic conditions, bank exchange rates, investors’ expectations, and so on. The data used for training this models just incorporates the prices of a fixed time interval.
+Another limitation is that just machine learning models were taken in account. Traditional models such as ARIMA are not compared. Finally, stock market’s movements are affected by many macro-economical factors such as political events, general economic conditions, bank exchange rates, investors’ expectations, and so on. The data used for training these models just incorporates the prices of a fixed time interval.
 
 The rest of this work is organized as follows. In the next chapter machine learning and deep learning are introduced. First, we explain the McCulloch and Pitts's Neuron model in order to easily understand the traditional neural networks. Then, we explain support vector machine as an optimization of neural networks.
 

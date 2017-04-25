@@ -24,7 +24,7 @@ The recall metric showed that the SVM was the best model to predict the downs of
 
 The results were congruent with the theory. The RNN respects the dependency between the inputs and, therefore, its performance should be better than the ANN's. The SVM can be seen as an optimization of the ANN model and, thus, should get better results than it. 
 
-However, better performance was expected from the three models. Although the price predictions were very close from the real values, the second criteria's accuracy was considerably low. One reason may be the low number of examples at the training subset (167). In fact, the models had very little information to work with since the attributes for each one were just the the three last prices. Stock market prices depend on a lot more variables.
+However, better performance was expected from the three models. Although the price predictions were very close from the real values, the second criteria's accuracy was considerably low. One reason may be the small number of examples at the training subset (167). In fact, the models had very little information to work with since the attributes for each one were just the three last prices. Stock market prices depend on a lot more variables.
 
 For this specific application, the most serious errors are done when the model predicts a higher price and the real value goes down. In this case, the investor would lose money if he decided to sell the stock based on the model's prediction. From this perspective, the SVM is the less recommended option and the RNN is again the best one. 
 
