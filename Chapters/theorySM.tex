@@ -21,7 +21,7 @@ Machine learning is about making computers modify or adapt their actions so that
 \end{itemize}
 
 \section{McCulloch and Pitts Neurons}
-McCulloch and Pitts modeled an artificial neuron as a mathematical model in order to extract only the essentials required to accurately represent the entity, removing all the obscured details. They took in account three basic elements: a set of weighted inputs ($w_i$), an adder that sums the input signals, and an activation function that decides if the neuron fires to the current inputs.
+McCulloch and Pitts modeled an artificial neuron as a mathematical model in order to extract only the essentials required to accurately represent the entity, removing all the obscured details. They took into account three basic elements: a set of weighted inputs ($w_i$), an adder that sums the input signals, and an activation function that decides if the neuron fires to the current inputs.
 \begin{figure}[h]
 \centering
  
@@ -171,7 +171,7 @@ The network now can be trained using the gradient descent to learn how the param
 \subsubsection{Backpropagation Through Time}
 BTT applied to RNNs have the constraint of sharing the parameters within each layer. As showed in  \ref{fig:unfold}, RNNs once unfolded in time can be seen as very deep feedforward networks in which all the layers share the same weights \cite{lecun2015deep}. Here, the model is presented as a deep multi-layer where each time step in the interval $[t,T]$ is a layer with N units each \cite{pascanu2013difficulty}. 
 
-The constraint can be satisfied by adding the gradients for W at each time step. It can also be seen as an advantage since the network requires less number of parameters than a non-recurrent neural network.
+The constraint can be satisfied by adding the gradients for W at each time step. It can also be seen as an advantage since the network requires a smaller number of parameters than a non-recurrent neural network.
 
 \begin{figure}
 
@@ -277,7 +277,7 @@ The second variant computes a parameter update for each training example $x_i$ a
 
 Where $\eta$ is the learning rate.
 
-The problem with the batch gradient descent is that it can be very slow and it does not allow to update the model with new examples on-the-fly. The stochastic gradient descent solves this problem and is faster than the batch gradient descent, but it performs updates with high variance causing the objective function to fluctuate heavily.  
+The problem with the batch gradient descent is that it can be very slow and it does not allow updating the model with new examples on-the-fly. The stochastic gradient descent solves this problem and is faster than the batch gradient descent, but it performs updates with high variance causing the objective function to fluctuate heavily.  
 
 Finally, the mini-batch gradient descent performs an update for every mini-batch of $n$ training examples as in equation \ref{eq:mbgd} \begin{equation} \label{eq:mbgd}
 \theta=\theta-\eta * \Delta_\theta * J(\theta;x_{i:i+n};y_{i:i+n})
@@ -287,7 +287,7 @@ In this way, the mini-batch gradient descent reduces the variance of the updates
 
 \subsection{Gradient Descent Optimization Algorithms}
 %To our knowledge, mini-batch Gradient Descent (SGD) is the best option to find the parameters that minimize an objective function. Mini-batch gradient descent is stochastic since the objective function is composed of a sum of subfunctions evaluated at different subsamples of data. Another source of noise may also come from dropout regularization \cite{kingma2014adam}. 
-Choosing the proper learning rate $\eta$ is a difficult and important task. Using the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. Another challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For this cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
+Choosing the proper learning rate $\eta$ is a difficult and important task. Using the same learning rate for all parameter updates may not be the best choice if the data is sparse and the features have different frequencies. In this case, it would be better to perform a larger update for rarely occuring features. Another challenge is to avoid getting trapped in a local minima when working with non-convex objective functions as is the usual case in deep learning. For these cases, efficient stochastic techniques as the ones explained in the following are required \cite{ruder2016overview}.
 %fuente:http://sebastianruder.com/optimizing-gradient-descent/
 
 The main algorithms used to avoid those challenges in deep learning applications are: Momentum, Nesterov and the accelerated gradient, Adagrad, RMSPop, and Adam. The first two algorithms adapt the updates to the slope of the error function and, thus, speed up SGD. The last ones adapt the updates to each individual parameter to perform larger updates for infrequent parameters and smaller updates for frequent parameters. This makes the algorithm well-suited for dealing with sparse data \cite{ruder2016overview}.

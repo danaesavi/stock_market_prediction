@@ -45,7 +45,7 @@ When analyzing by month it can be seen in Figure \ref{fig:walmexMonth} that the 
 \end{figure}
 
 \section{Preprocessing}
-In this section we explain how prices are mapped to an adequate representation that the three models understand. The three models proposed belong to supervised learning. Hence, data needs to be vectorized and target values need to be defined. The preprocessing took in account three steps:
+In this section we explain how prices are mapped to an adequate representation that the three models understand. The three models proposed belong to supervised learning. Hence, data needs to be vectorized and target values need to be defined. The preprocessing took into account three steps:
 
 \begin{enumerate}
 \item Data split
@@ -64,7 +64,7 @@ x_{new}=\frac{x-x_{min}}{x_{max}-x_{min}}
 
 where $x_{min}$ is the minimum value in the training subset and $x_{max}$ is the maximum value in the training subset. 
 
-For the evaluation phase, the testing subset was also normalized taking in account the maximum and minimum value of the training subset in order to avoid adding future information to the testing subset.
+For the evaluation phase, the testing subset was also normalized taking into account the maximum and minimum value of the training subset in order to avoid adding future information to the testing subset.
 
 In this work, sequences of three prices were defined as the attributes of the database. Hence, the target value is the fourth one in the sequence. Since the data is already in weekly time intervals, there is no need to keep the dates for each price.
 
