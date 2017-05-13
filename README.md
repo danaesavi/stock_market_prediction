@@ -8,5 +8,4 @@ Autor
 __Danae Sánchez Villegas__: Ingeniería en Computación, ITAM
 
 Plantilla
-=======
 __Víctor R. Martínez__: Estudiante de Doctorado en Ciencias de la Computación en USC Viterbi. Maestro en Ciencias de la Computación por el ITAM.
